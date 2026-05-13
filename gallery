@@ -1,1 +1,573 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thalassa Gallery | Exhibitions & Events</title>
+
+  <style>
+    :root{
+      --ink:#020817;
+      --navy:#06172d;
+      --navy-2:#0b2746;
+      --white:#f8fafc;
+      --mist:rgba(248,250,252,.78);
+      --soft:#b9c6d3;
+      --muted:#8293a4;
+      --line:rgba(220,232,244,.16);
+      --panel:rgba(4,14,29,.60);
+      --panel-strong:rgba(4,14,29,.78);
+      --accent:#d9e7f2;
+      --gold:#d8c8a6;
+      --focus:rgba(216,200,166,.82);
+    }
+
+    *{box-sizing:border-box;}
+
+    html,body{
+      margin:0;
+      width:100%;
+      min-height:100%;
+      background:var(--ink);
+      color:var(--white);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
+      letter-spacing:-.02em;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(216,200,166,.18), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(92,155,210,.22), transparent 30%),
+        linear-gradient(135deg,#020817 0%,#06172d 44%,#0b2746 72%,#020817 100%);
+    }
+
+    a{color:inherit;text-decoration:none;}
+
+    .page{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:280px 1fr;
+    }
+
+    .sidebar{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding:36px 22px;
+      background:rgba(2,8,23,.55);
+      border-right:1px solid var(--line);
+      backdrop-filter:blur(26px);
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:28px;
+      z-index:5;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      color:var(--mist);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:99px;
+      background:var(--gold);
+      box-shadow:0 0 32px rgba(216,200,166,.82);
+      flex:0 0 auto;
+    }
+
+    .nav{
+      display:grid;
+      align-content:start;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .nav a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:52px;
+      padding:13px 14px;
+      border-radius:18px;
+      border:1px solid rgba(220,232,244,.08);
+      color:var(--soft);
+      background:rgba(255,255,255,.035);
+      outline:none;
+      transition:.18s ease;
+      font-size:15px;
+    }
+
+    .nav a.active{
+      color:var(--white);
+      border-color:rgba(216,200,166,.46);
+      background:linear-gradient(180deg, rgba(216,200,166,.18), rgba(255,255,255,.05));
+    }
+
+    .nav a:hover,
+    .nav a:focus,
+    .nav a:focus-visible{
+      color:var(--white);
+      border-color:var(--focus);
+      background:linear-gradient(180deg, rgba(216,200,166,.16), rgba(255,255,255,.06));
+      box-shadow:0 0 0 3px rgba(216,200,166,.14);
+      transform:translateX(3px);
+    }
+
+    .remote{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .content{
+      min-height:100vh;
+      padding:42px 58px 52px;
+      position:relative;
+    }
+
+    .topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--mist);
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:.17em;
+      margin-bottom:64px;
+    }
+
+    .hero{
+      min-height:520px;
+      display:grid;
+      grid-template-columns:1fr 460px;
+      align-items:end;
+      gap:54px;
+      margin-bottom:70px;
+    }
+
+    .eyebrow{
+      color:var(--gold);
+      font-size:14px;
+      letter-spacing:.30em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    h1{
+      margin:0;
+      font-size:88px;
+      line-height:.90;
+      font-weight:520;
+      letter-spacing:-.075em;
+      text-shadow:0 26px 70px rgba(0,0,0,.48);
+    }
+
+    .lead{
+      margin-top:24px;
+      max-width:760px;
+      color:rgba(248,250,252,.82);
+      font-size:23px;
+      line-height:1.42;
+      font-weight:300;
+    }
+
+    .lead.en{
+      margin-top:14px;
+      color:var(--soft);
+      font-size:18px;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(8,25,48,.62), rgba(3,12,26,.52));
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:24px;
+      backdrop-filter:blur(28px);
+      box-shadow:0 34px 100px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .hero-card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      border-radius:24px;
+      display:block;
+      background:rgba(255,255,255,.06);
+    }
+
+    .hero-card h2{
+      margin:22px 0 8px;
+      font-size:27px;
+      font-weight:480;
+      letter-spacing:-.055em;
+    }
+
+    .hero-card p{
+      margin:0;
+      color:var(--soft);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .section-label{
+      margin:0 0 22px;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.24em;
+      font-size:13px;
+    }
+
+    .art-row{
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      gap:42px;
+      align-items:center;
+      padding:34px;
+      margin-bottom:34px;
+      border:1px solid var(--line);
+      border-radius:38px;
+      background:rgba(4,14,29,.42);
+      backdrop-filter:blur(18px);
+      box-shadow:0 24px 80px rgba(0,0,0,.28);
+    }
+
+    .art-row.reverse{
+      grid-template-columns:.94fr 1.06fr;
+    }
+
+    .art-row.reverse .visual{
+      order:2;
+    }
+
+    .visual{
+      min-height:360px;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(220,232,244,.12);
+      background:rgba(255,255,255,.05);
+    }
+
+    .visual img{
+      width:100%;
+      height:100%;
+      min-height:360px;
+      object-fit:cover;
+      display:block;
+      filter:saturate(.95) contrast(1.04) brightness(.92);
+    }
+
+    .copy{
+      padding:8px;
+    }
+
+    .kicker{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:12px;
+      margin-bottom:14px;
+    }
+
+    .copy h2{
+      margin:0;
+      font-size:42px;
+      line-height:1;
+      font-weight:500;
+      letter-spacing:-.065em;
+    }
+
+    .copy p{
+      margin:18px 0 0;
+      color:rgba(248,250,252,.78);
+      font-size:19px;
+      line-height:1.48;
+      font-weight:300;
+    }
+
+    .copy .en{
+      color:var(--soft);
+      font-size:15px;
+      margin-top:12px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .pill{
+      border:1px solid rgba(216,200,166,.28);
+      border-radius:999px;
+      padding:9px 13px;
+      color:rgba(248,250,252,.78);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      letter-spacing:.02em;
+    }
+
+    .catalog{
+      margin-top:44px;
+      display:grid;
+      grid-template-columns:150px 1fr auto;
+      gap:22px;
+      align-items:center;
+      padding:24px;
+      border-radius:34px;
+      background:var(--panel-strong);
+      border:1px solid rgba(216,200,166,.26);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .qr{
+      width:150px;
+      height:150px;
+      border-radius:22px;
+      padding:11px;
+      background:#fff;
+      box-shadow:0 18px 45px rgba(0,0,0,.30);
+    }
+
+    .qr img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .catalog h2{
+      margin:0 0 8px;
+      font-size:30px;
+      font-weight:480;
+      letter-spacing:-.055em;
+    }
+
+    .catalog p{
+      margin:0;
+      color:var(--soft);
+      font-size:16px;
+      line-height:1.45;
+    }
+
+    .open-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:150px;
+      height:52px;
+      border-radius:999px;
+      border:1px solid rgba(216,200,166,.38);
+      color:var(--white);
+      outline:none;
+      transition:.18s ease;
+      background:rgba(255,255,255,.04);
+    }
+
+    .open-link:hover,
+    .open-link:focus,
+    .open-link:focus-visible{
+      border-color:var(--focus);
+      box-shadow:0 0 0 3px rgba(216,200,166,.14);
+      background:rgba(216,200,166,.12);
+      transform:translateY(-2px);
+    }
+
+    .bottom{
+      margin-top:44px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:26px;
+      color:rgba(248,250,252,.68);
+      font-size:14px;
+      padding-top:26px;
+      border-top:1px solid var(--line);
+    }
+
+    .line{
+      width:42px;
+      height:1px;
+      background:rgba(216,200,166,.76);
+      display:inline-block;
+      margin-right:12px;
+      vertical-align:middle;
+    }
+
+    @media(max-width:1000px){
+      .page{display:block;}
+      .sidebar{position:relative;height:auto;display:block;padding:24px 18px;}
+      .nav{grid-template-columns:1fr 1fr;}
+      .content{padding:34px 18px;}
+      .hero,.art-row,.art-row.reverse,.catalog{display:block;}
+      h1{font-size:54px;}
+      .lead{font-size:18px;}
+      .hero-card{margin-top:34px;}
+      .art-row{padding:18px;border-radius:28px;}
+      .art-row.reverse .visual{order:initial;}
+      .visual,.visual img{min-height:260px;}
+      .copy{margin-top:24px;}
+      .copy h2{font-size:34px;}
+      .catalog{text-align:center;}
+      .qr{margin:0 auto 18px;}
+      .open-link{margin-top:18px;}
+      .bottom{display:block;line-height:1.7;}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <aside class="sidebar">
+      <div class="brand"><span class="dot"></span><span>Thalassa Suites<br>TV</span></div>
+
+      <nav class="nav" aria-label="Navigazione TV Thalassa Suites">
+        <a href="index.html">Home</a>
+        <a href="suite-viola.html">Suite Viola</a>
+        <a href="suite-blu.html">Suite Blu</a>
+        <a href="suite-rosa.html">Suite Rosa</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="mobile.html#wifi">Wi‑Fi</a>
+        <a href="mobile.html#checkout">Check‑out</a>
+        <a href="mobile.html#rules">House Rules</a>
+        <a href="mobile.html#services">Services</a>
+      </nav>
+
+      <div class="remote">Telecomando: frecce + OK<br>Remote: arrows + OK</div>
+    </aside>
+
+    <section class="content">
+      <header class="topline">
+        <div>Exhibitions & Events</div>
+        <div>Ground Floor · Piano terra</div>
+      </header>
+
+      <section class="hero">
+        <article>
+          <div class="eyebrow">Thalassa Gallery</div>
+          <h1>Art, light<br>and memory.</h1>
+          <p class="lead">Uno spazio al piano terra dedicato a mostre, eventi e incontri artistici, dove il soggiorno incontra la cultura visiva e il territorio.</p>
+          <p class="lead en">A ground floor space dedicated to exhibitions, events and artistic encounters, where hospitality meets visual culture and place.</p>
+        </article>
+
+        <aside class="hero-card">
+          <img src="images/gallery-hero.jpg" alt="Thalassa Gallery" />
+          <h2>Exhibitions & Events</h2>
+          <p>La galleria è pensata come una soglia: un luogo calmo, essenziale, dove immagini e parole accompagnano l’esperienza di Thalassa Suites.</p>
+        </aside>
+      </section>
+
+      <p class="section-label">On View Now · Mostra in corso</p>
+
+      <section class="art-row" id="on-view">
+        <div class="visual">
+          <img src="images/gallery-01.jpg" alt="Opera o mostra in corso" />
+        </div>
+        <article class="copy">
+          <div class="kicker">On View Now</div>
+          <h2>Mediterranean Echoes</h2>
+          <p>Una raccolta di immagini, dettagli e presenze visive ispirate alla memoria liquida del Mediterraneo.</p>
+          <p class="en">A collection of images, details and visual presences inspired by the liquid memory of the Mediterranean.</p>
+          <div class="meta">
+            <span class="pill">Ground Floor</span>
+            <span class="pill">Open Daily</span>
+            <span class="pill">Digital Catalog</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="art-row reverse" id="events">
+        <div class="visual">
+          <img src="images/gallery-02.jpg" alt="Evento Thalassa Gallery" />
+        </div>
+        <article class="copy">
+          <div class="kicker">Upcoming Events</div>
+          <h2>Evening Encounters</h2>
+          <p>Eventi intimi, presentazioni e piccoli incontri culturali pensati per amplificare il dialogo tra arte, ospitalità e luogo.</p>
+          <p class="en">Intimate events, presentations and small cultural encounters designed to deepen the dialogue between art, hospitality and place.</p>
+          <div class="meta">
+            <span class="pill">Events</span>
+            <span class="pill">By Invitation</span>
+            <span class="pill">Ground Floor Lounge</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="art-row" id="artist">
+        <div class="visual">
+          <img src="images/gallery-03.jpg" alt="Artist of the Month" />
+        </div>
+        <article class="copy">
+          <div class="kicker">Artist of the Month</div>
+          <h2>A Quiet Signature</h2>
+          <p>Un focus mensile dedicato a un artista, a un’opera o a una ricerca visiva capace di dialogare con il mare e con l’identità di Thalassa.</p>
+          <p class="en">A monthly focus on an artist, artwork or visual research able to converse with the sea and with the identity of Thalassa.</p>
+          <div class="meta">
+            <span class="pill">Featured Artist</span>
+            <span class="pill">Monthly Selection</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="catalog" id="catalog">
+        <div class="qr"><img src="images/qr-gallery.png" alt="QR Thalassa Gallery catalog" /></div>
+        <div>
+          <h2>Digital Catalog · Catalogo digitale</h2>
+          <p>Scansiona per esplorare opere, eventi, dettagli e contenuti aggiornati della Thalassa Gallery.</p>
+        </div>
+        <a class="open-link" href="mobile.html" tabindex="0">Apri · Open</a>
+      </section>
+
+      <footer class="bottom">
+        <div><span class="line"></span>Thalassa Gallery · Exhibitions & Events</div>
+        <div>Ground Floor · Piano terra</div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const focusable = Array.from(document.querySelectorAll('a'));
+
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.nav a.active') || focusable[0];
+      setTimeout(() => active.focus(), 500);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      const keys = ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '];
+      if(!keys.includes(event.key)) return;
+
+      const current = focusable.indexOf(document.activeElement);
+      if(current === -1){
+        focusable[0].focus();
+        return;
+      }
+
+      if(event.key === 'ArrowDown' || event.key === 'ArrowRight'){
+        event.preventDefault();
+        focusable[(current + 1) % focusable.length].focus();
+      }
+
+      if(event.key === 'ArrowUp' || event.key === 'ArrowLeft'){
+        event.preventDefault();
+        focusable[(current - 1 + focusable.length) % focusable.length].focus();
+      }
+
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        document.activeElement.click();
+      }
+    });
+  </script>
+</body>
+</html>
 
