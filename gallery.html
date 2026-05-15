@@ -10,11 +10,26 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --navy: #07111f;
+      --navy-2: #10263f;
+      --cream: #f7f3ea;
+      --gold: #d7c28a;
+      --glass: rgba(255, 255, 255, 0.075);
+      --glass-border: rgba(255, 255, 255, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      background: linear-gradient(135deg, #07111f 0%, #10263f 55%, #07111f 100%);
-      color: #f7f3ea;
+      background:
+        radial-gradient(circle at top left, rgba(215, 194, 138, 0.10), transparent 32%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy) 100%);
+      color: var(--cream);
       min-height: 100vh;
     }
 
@@ -22,7 +37,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(7, 17, 31, 0.86);
+      background: rgba(7, 17, 31, 0.88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.12);
       padding: 18px 40px;
@@ -35,21 +50,30 @@
       letter-spacing: 3px;
       font-size: 18px;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .home-link {
-      color: #f7f3ea;
+      color: var(--cream);
       text-decoration: none;
       font-size: 16px;
       opacity: 0.85;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.045);
     }
 
-    .home-link:hover {
+    .home-link:hover,
+    .home-link:focus {
       opacity: 1;
+      outline: none;
+      border-color: rgba(215,194,138,0.65);
+      background: rgba(215,194,138,0.12);
     }
 
     .hero {
-      padding: 80px 8vw 45px;
+      padding: 84px 8vw 48px;
       text-align: center;
     }
 
@@ -57,7 +81,7 @@
       text-transform: uppercase;
       letter-spacing: 4px;
       font-size: 13px;
-      color: #d7c28a;
+      color: var(--gold);
       margin-bottom: 18px;
     }
 
@@ -69,11 +93,18 @@
     }
 
     .subtitle {
-      max-width: 760px;
+      max-width: 820px;
       margin: 24px auto 0;
-      font-size: 21px;
-      line-height: 1.6;
-      color: rgba(247, 243, 234, 0.82);
+      font-size: clamp(18px, 2.1vw, 22px);
+      line-height: 1.65;
+      color: rgba(247, 243, 234, 0.84);
+    }
+
+    .subtitle .en {
+      display: block;
+      margin-top: 12px;
+      color: rgba(247, 243, 234, 0.68);
+      font-style: italic;
     }
 
     .events {
@@ -81,28 +112,36 @@
       margin: 30px auto 90px;
       padding: 0 26px;
       display: grid;
-      gap: 36px;
+      gap: 38px;
     }
 
     .event-card {
       display: grid;
       grid-template-columns: 42% 58%;
-      min-height: 360px;
+      min-height: 380px;
       overflow: hidden;
       border-radius: 30px;
-      background: rgba(255,255,255,0.075);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
       box-shadow: 0 28px 80px rgba(0,0,0,0.38);
     }
 
     .event-image {
-      min-height: 360px;
+      min-height: 380px;
       background-size: cover;
       background-position: center;
+      position: relative;
+    }
+
+    .event-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(7,17,31,0.06), rgba(7,17,31,0.34));
     }
 
     .event-content {
-      padding: 44px;
+      padding: 46px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -129,24 +168,31 @@
     }
 
     .event-title {
-      font-size: clamp(30px, 4vw, 48px);
+      font-size: clamp(31px, 4vw, 50px);
       margin: 0 0 14px;
       font-weight: normal;
-      line-height: 1.1;
+      line-height: 1.08;
+      letter-spacing: 0.4px;
     }
 
     .event-date {
       font-size: 18px;
-      color: #d7c28a;
-      margin-bottom: 22px;
+      color: var(--gold);
+      margin-bottom: 24px;
       letter-spacing: 1px;
     }
 
     .event-text {
       font-size: 19px;
-      line-height: 1.65;
+      line-height: 1.64;
       color: rgba(247,243,234,0.84);
-      margin-bottom: 30px;
+      margin: 0 0 16px;
+    }
+
+    .event-text.en {
+      color: rgba(247,243,234,0.68);
+      font-style: italic;
+      margin-bottom: 32px;
     }
 
     .button {
@@ -155,7 +201,7 @@
       padding: 14px 24px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.35);
-      color: #f7f3ea;
+      color: var(--cream);
       text-decoration: none;
       font-size: 16px;
       letter-spacing: 1px;
@@ -176,27 +222,67 @@
       padding: 0 20px 45px;
       color: rgba(247,243,234,0.55);
       font-size: 15px;
+      line-height: 1.6;
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 900px) {
       .topbar {
         padding: 16px 22px;
       }
 
-      .event-card {
-        grid-template-columns: 1fr;
+      .brand {
+        font-size: 15px;
+        letter-spacing: 2px;
       }
 
-      .event-image {
-        min-height: 270px;
-      }
-
-      .event-content {
-        padding: 32px 26px;
+      .home-link {
+        font-size: 14px;
+        padding: 9px 12px;
       }
 
       .hero {
-        padding-top: 58px;
+        padding: 58px 24px 36px;
+      }
+
+      .events {
+        padding: 0 18px;
+        gap: 30px;
+        margin-bottom: 70px;
+      }
+
+      .event-card {
+        grid-template-columns: 1fr;
+        border-radius: 24px;
+      }
+
+      .event-image {
+        min-height: 280px;
+      }
+
+      .event-content {
+        padding: 32px 26px 34px;
+      }
+
+      .event-text {
+        font-size: 18px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .event-card:nth-child(even) {
+        grid-template-columns: 58% 42%;
+      }
+
+      .event-card:nth-child(even) .event-image {
+        order: 2;
+      }
+
+      .event-card:nth-child(even) .event-content {
+        order: 1;
+      }
+
+      .event-card:nth-child(even) .event-image::after {
+        background: linear-gradient(270deg, rgba(7,17,31,0.06), rgba(7,17,31,0.34));
       }
     }
   </style>
@@ -215,63 +301,74 @@
     <p class="subtitle">
       Eventi, mostre e progetti visivi ospitati da Thalassa Suites:
       un archivio vivo di immagini, luoghi, memoria e bellezza contemporanea.
+      <span class="en">
+        Events, exhibitions and visual projects hosted by Thalassa Suites:
+        a living archive of images, places, memory and contemporary beauty.
+      </span>
     </p>
   </section>
 
   <main class="events">
 
     <article class="event-card">
-      <div class="event-image" style="background-image: url('images/event-san-cataldo.jpg');"></div>
+      <div class="event-image" style="background-image: url('images/event-san-cataldo.jpg');" aria-label="San Cataldo andata e forse ritorno"></div>
       <div class="event-content">
-        <span class="status">Evento concluso</span>
+        <span class="status">Evento concluso / Past event</span>
         <h2 class="event-title">San Cataldo andata e forse ritorno</h2>
         <div class="event-date">04.10.2025 — 04.11.2025</div>
         <p class="event-text">
           Un percorso visivo dedicato alla memoria dei luoghi, al ritorno possibile
-          e alla forza silenziosa del paesaggio mediterraneo. L’evento racconta
-          San Cataldo come spazio reale e interiore, sospeso tra partenza,
-          nostalgia e desiderio di ritorno.
+          e alla forza silenziosa del paesaggio mediterraneo.
         </p>
-        <a class="button" href="event-san-cataldo.html">Approfondisci</a>
+        <p class="event-text en">
+          A visual journey dedicated to the memory of places, the possibility of return,
+          and the quiet strength of the Mediterranean landscape.
+        </p>
+        <a class="button" href="event-san-cataldo.html">Approfondisci / Discover more</a>
       </div>
     </article>
 
     <article class="event-card">
-      <div class="event-image" style="background-image: url('images/event-calabriselle.jpg');"></div>
+      <div class="event-image" style="background-image: url('images/event-calabriselle.jpg');" aria-label="Calabriselle"></div>
       <div class="event-content">
-        <span class="status">Evento concluso</span>
+        <span class="status">Evento concluso / Past event</span>
         <h2 class="event-title">Calabriselle</h2>
         <div class="event-date">03.01.2026 — 03.04.2026</div>
         <p class="event-text">
-          Un omaggio alla grazia, alla materia e alla memoria femminile del Sud.
-          Calabriselle raccoglie segni, colori e presenze che evocano radici,
-          identità e delicatezza popolare, trasformando la tradizione in racconto
-          contemporaneo.
+          Un omaggio alla grazia, alla materia e alla memoria femminile del Sud,
+          tra radici, identità e racconto contemporaneo.
         </p>
-        <a class="button" href="event-calabriselle.html">Approfondisci</a>
+        <p class="event-text en">
+          A tribute to grace, material presence, and the feminine memory of Southern Italy,
+          between roots, identity and contemporary storytelling.
+        </p>
+        <a class="button" href="event-calabriselle.html">Approfondisci / Discover more</a>
       </div>
     </article>
 
     <article class="event-card">
-      <div class="event-image" style="background-image: url('images/event-homunculus.jpg');"></div>
+      <div class="event-image" style="background-image: url('images/event-homunculus.jpg');" aria-label="Homunculus"></div>
       <div class="event-content">
-        <span class="status upcoming">Prossimamente</span>
+        <span class="status upcoming">In programmazione / Upcoming</span>
         <h2 class="event-title">Homunculus</h2>
-        <div class="event-date">Coming soon</div>
+        <div class="event-date">Prossimamente / Coming soon</div>
         <p class="event-text">
           Un progetto in preparazione dedicato alla figura umana, al frammento,
-          alla trasformazione e alla parte invisibile dell’identità. Homunculus
-          sarà un’indagine visiva sul corpo simbolico e sulle sue metamorfosi
-          interiori.
+          alla trasformazione e alla parte invisibile dell’identità.
         </p>
-        <a class="button" href="event-homunculus.html">Scopri il progetto</a>
+        <p class="event-text en">
+          A forthcoming project dedicated to the human figure, the fragment,
+          transformation and the invisible side of identity.
+        </p>
+        <a class="button" href="event-homunculus.html">Scopri il progetto / Discover the project</a>
       </div>
     </article>
 
   </main>
 
   <footer>
-    Thalassa Gallery — curated visual experiences by the sea
+    Thalassa Gallery — Eventi e progetti visivi by the sea<br>
+    Thalassa Gallery — Events and visual projects by the sea
   </footer>
 
 </body>
