@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --navy: #07111f;
@@ -19,9 +17,7 @@
       --glass-border: rgba(255, 255, 255, 0.15);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -126,19 +122,48 @@
       box-shadow: 0 28px 80px rgba(0,0,0,0.38);
     }
 
+    /*
+      CONTROLLO IMMAGINI:
+      - Di default le foto riempiono il riquadro con object-fit: cover.
+      - Se vuoi vedere una foto intera senza tagli, aggiungi la classe "contain" al tag figure.
+      - Per spostare il punto importante della foto, modifica object-position nelle classi sotto.
+    */
+
     .event-image {
+      margin: 0;
       min-height: 380px;
-      background-size: cover;
-      background-position: center;
+      width: 100%;
+      height: 100%;
+      background: rgba(7,17,31,0.9);
       position: relative;
+      overflow: hidden;
+    }
+
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .event-image.contain img {
+      object-fit: contain;
+      background: #07111f;
     }
 
     .event-image::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(7,17,31,0.06), rgba(7,17,31,0.34));
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(7,17,31,0.04), rgba(7,17,31,0.32));
     }
+
+    .image-san-cataldo img { object-position: center center; }
+    .image-calabriselle img { object-position: center center; }
+    .image-homunculus img { object-position: center center; }
 
     .event-content {
       padding: 46px;
@@ -226,63 +251,33 @@
     }
 
     @media (max-width: 900px) {
-      .topbar {
-        padding: 16px 22px;
-      }
-
-      .brand {
-        font-size: 15px;
-        letter-spacing: 2px;
-      }
-
-      .home-link {
-        font-size: 14px;
-        padding: 9px 12px;
-      }
-
-      .hero {
-        padding: 58px 24px 36px;
-      }
-
+      .topbar { padding: 16px 22px; }
+      .brand { font-size: 15px; letter-spacing: 2px; }
+      .home-link { font-size: 14px; padding: 9px 12px; }
+      .hero { padding: 58px 24px 36px; }
       .events {
         padding: 0 18px;
         gap: 30px;
         margin-bottom: 70px;
       }
-
       .event-card {
         grid-template-columns: 1fr;
         border-radius: 24px;
       }
-
-      .event-image {
+      .event-image,
+      .event-image img {
         min-height: 280px;
       }
-
-      .event-content {
-        padding: 32px 26px 34px;
-      }
-
-      .event-text {
-        font-size: 18px;
-      }
+      .event-content { padding: 32px 26px 34px; }
+      .event-text { font-size: 18px; }
     }
 
     @media (min-width: 1200px) {
-      .event-card:nth-child(even) {
-        grid-template-columns: 58% 42%;
-      }
-
-      .event-card:nth-child(even) .event-image {
-        order: 2;
-      }
-
-      .event-card:nth-child(even) .event-content {
-        order: 1;
-      }
-
+      .event-card:nth-child(even) { grid-template-columns: 58% 42%; }
+      .event-card:nth-child(even) .event-image { order: 2; }
+      .event-card:nth-child(even) .event-content { order: 1; }
       .event-card:nth-child(even) .event-image::after {
-        background: linear-gradient(270deg, rgba(7,17,31,0.06), rgba(7,17,31,0.34));
+        background: linear-gradient(270deg, rgba(7,17,31,0.04), rgba(7,17,31,0.32));
       }
     }
   </style>
@@ -311,7 +306,9 @@
   <main class="events">
 
     <article class="event-card">
-      <div class="event-image" style="background-image: url('images/event-san-cataldo.jpg');" aria-label="San Cataldo andata e forse ritorno"></div>
+      <figure class="event-image image-san-cataldo">
+        <img src="images/event-san-cataldo.jpg" alt="San Cataldo andata e forse ritorno" />
+      </figure>
       <div class="event-content">
         <span class="status">Evento concluso / Past event</span>
         <h2 class="event-title">San Cataldo andata e forse ritorno</h2>
@@ -329,7 +326,9 @@
     </article>
 
     <article class="event-card">
-      <div class="event-image" style="background-image: url('images/event-calabriselle.jpg');" aria-label="Calabriselle"></div>
+      <figure class="event-image image-calabriselle">
+        <img src="images/event-calabriselle.jpg" alt="Calabriselle" />
+      </figure>
       <div class="event-content">
         <span class="status">Evento concluso / Past event</span>
         <h2 class="event-title">Calabriselle</h2>
@@ -347,7 +346,9 @@
     </article>
 
     <article class="event-card">
-      <div class="event-image" style="background-image: url('images/event-homunculus.jpg');" aria-label="Homunculus"></div>
+      <figure class="event-image image-homunculus">
+        <img src="images/event-homunculus.jpg" alt="Homunculus" />
+      </figure>
       <div class="event-content">
         <span class="status upcoming">In programmazione / Upcoming</span>
         <h2 class="event-title">Homunculus</h2>
