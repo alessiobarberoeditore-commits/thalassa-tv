@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calabriselle | Thalassa Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    THALASSA GALLERY — PAGINA EVENTO: CALABRISELLE
+    File: event-calabriselle.html
+
+    Cartelle:
+    images/
+    docs/
+
+    Immagini previste:
+    images/calabriselle-hero.jpg
+    images/calabriselle-locandina.jpg
+    images/calabriselle-comunicato.jpg
+    images/calabriselle-01.jpg ... images/calabriselle-08.jpg
+
+    PDF previsti:
+    docs/calabriselle-locandina.pdf
+    docs/calabriselle-comunicato-stampa.pdf
+
+    Video:
+    puoi lasciare i riquadri vuoti, inserire link Instagram, embed Instagram,
+    iframe YouTube/Vimeo o video MP4 locali leggeri.
+
+    Regola lingua:
+    pagina bilingue italiano/inglese; titolo evento solo in italiano.
+  -->
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --navy: #07111f;
+      --navy-2: #10263f;
+      --cream: #f7f3ea;
+      --gold: #d7c28a;
+      --rose: #d8aaa1;
+      --muted: rgba(247, 243, 234, 0.72);
+      --glass: rgba(255, 255, 255, 0.075);
+      --glass-border: rgba(255, 255, 255, 0.16);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(216, 170, 161, 0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(215, 194, 138, 0.10), transparent 36%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 58%, var(--navy) 100%);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(7, 17, 31, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+      font-size: 18px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 15px;
+      opacity: 0.86;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.045);
+      transition: all 0.22s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+      opacity: 1;
+      outline: none;
+      border-color: rgba(215,194,138,0.65);
+      background: rgba(215,194,138,0.12);
+    }
+
+    .hero {
+      min-height: 74vh;
+      display: grid;
+      grid-template-columns: 52% 48%;
+      align-items: stretch;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .hero-copy {
+      padding: 88px 7vw 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7.2vw, 94px);
+      margin: 0;
+      font-weight: normal;
+      letter-spacing: 1px;
+      line-height: 0.98;
+    }
+
+    .date {
+      margin-top: 26px;
+      color: var(--gold);
+      font-size: clamp(19px, 2.2vw, 25px);
+      letter-spacing: 1.5px;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin-top: 30px;
+      font-size: clamp(19px, 2.1vw, 23px);
+      line-height: 1.6;
+      color: rgba(247,243,234,0.86);
+    }
+
+    .intro.en {
+      margin-top: 15px;
+      color: rgba(247,243,234,0.68);
+      font-style: italic;
+    }
+
+    .hero-image {
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 55%), #07111f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 720px;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      border-radius: 26px;
+      box-shadow: 0 26px 80px rgba(0,0,0,0.44);
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 76px 28px;
+    }
+
+    .section.compact { padding-top: 36px; }
+
+    .section-title {
+      margin: 0 0 28px;
+      font-weight: normal;
+      font-size: clamp(34px, 4.5vw, 58px);
+      line-height: 1.08;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .edit-note {
+      margin: 0 0 28px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(216, 170, 161, 0.10);
+      border: 1px solid rgba(216, 170, 161, 0.28);
+      color: rgba(247,243,234,0.74);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .text-grid,
+    .materials,
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .text-card,
+    .material-card,
+    .video-card {
+      border-radius: 30px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 24px 74px rgba(0,0,0,0.28);
+      overflow: hidden;
+    }
+
+    .text-card {
+      padding: 34px;
+      border-radius: 28px;
+      box-shadow: 0 22px 70px rgba(0,0,0,0.22);
+    }
+
+    .text-card h3,
+    .material-content h3,
+    .video-content h3 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      font-weight: normal;
+      color: var(--gold);
+    }
+
+    .text-card p {
+      margin: 0 0 18px;
+      font-size: 19px;
+      line-height: 1.72;
+      color: rgba(247,243,234,0.84);
+    }
+
+    .text-card p:last-child { margin-bottom: 0; }
+
+    .text-card.en p {
+      color: rgba(247,243,234,0.68);
+      font-style: italic;
+    }
+
+    .material-preview {
+      min-height: 390px;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 55%), #07111f;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .material-preview img {
+      max-width: 100%;
+      max-height: 520px;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.38);
+    }
+
+    .material-content,
+    .video-content {
+      padding: 30px;
+    }
+
+    .material-content p,
+    .video-content p {
+      margin: 0 0 22px;
+      font-size: 18px;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-block;
+      width: fit-content;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 16px;
+      letter-spacing: 1px;
+      background: rgba(255,255,255,0.08);
+      transition: all 0.24s ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      background: rgba(215,194,138,0.22);
+      border-color: rgba(215,194,138,0.7);
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    .carousel-wrap {
+      border-radius: 32px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 22px;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.34);
+    }
+
+    .carousel {
+      position: relative;
+      min-height: 620px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 55%), #07111f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .slide.active { display: flex; }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 584px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.42);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.34);
+      background: rgba(7,17,31,0.62);
+      color: var(--cream);
+      font-size: 42px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 4;
+      transition: all 0.24s ease;
+    }
+
+    .arrow:hover,
+    .arrow:focus {
+      outline: none;
+      background: rgba(215,194,138,0.25);
+      border-color: rgba(215,194,138,0.72);
+    }
+
+    .arrow.left { left: 22px; }
+    .arrow.right { right: 22px; }
+
+    .carousel-caption {
+      text-align: center;
+      padding: 20px 10px 4px;
+      font-size: 17px;
+      line-height: 1.55;
+      color: rgba(247,243,234,0.72);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.36);
+      background: rgba(255,255,255,0.12);
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .video-frame {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, rgba(216,170,161,0.20), rgba(255,255,255,0.04)), #07111f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: rgba(247,243,234,0.78);
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 28px;
+    }
+
+    .video-frame video,
+    .video-frame iframe,
+    .video-frame blockquote {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .play-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 34px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .bottom-nav {
+      text-align: center;
+      padding: 30px 20px 78px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 0 20px 42px;
+      color: rgba(247,243,234,0.55);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 960px) {
+      .topbar {
+        padding: 16px 22px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand { font-size: 15px; letter-spacing: 2px; }
+      .nav-links { justify-content: flex-start; }
+      .nav-link { font-size: 14px; padding: 9px 12px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy { padding: 58px 26px 42px; }
+      .hero-image { min-height: 340px; }
+
+      .text-grid,
+      .materials,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section { padding: 56px 18px; }
+      .text-card,
+      .material-content,
+      .video-content { padding: 26px; }
+      .material-preview { min-height: 300px; }
+
+      .carousel,
+      .slide {
+        min-height: 380px;
+      }
+
+      .slide img { max-height: 344px; }
+
+      .arrow {
+        width: 52px;
+        height: 52px;
+        font-size: 34px;
+      }
+
+      .arrow.left { left: 12px; }
+      .arrow.right { right: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">Thalassa Suites</div>
+    <nav class="nav-links" aria-label="Navigazione evento">
+      <a class="nav-link" href="gallery.html">← Gallery</a>
+      <a class="nav-link" href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Past event / Evento concluso</div>
+      <h1>Calabriselle</h1>
+      <div class="date">03.01.2026 — 03.04.2026</div>
+
+      <!-- EDITA QUI: sottotitolo breve italiano -->
+      <p class="intro">
+        Un omaggio alla grazia, alla materia e alla memoria femminile del Sud,
+        tra radici, identità e racconto contemporaneo.
+      </p>
+
+      <!-- EDITA QUI: sottotitolo breve inglese -->
+      <p class="intro en">
+        A tribute to grace, material presence, and the feminine memory of Southern Italy,
+        between roots, identity and contemporary storytelling.
+      </p>
+    </div>
+
+    <div class="hero-image">
+      <!-- EDITA QUI: immagine hero -->
+      <img src="images/calabriselle-hero.jpg" alt="Calabriselle" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-kicker">About the event / Il progetto</div>
+    <h2 class="section-title">Roots, memory and contemporary grace</h2>
+
+    <p class="edit-note">
+      Area predisposta per modificare liberamente il testo ufficiale dell’evento.
+      Puoi sostituire i paragrafi italiani e inglesi senza toccare la struttura grafica.
+    </p>
+
+    <div class="text-grid">
+      <div class="text-card">
+        <h3>Testo italiano</h3>
+        <!-- EDITA QUI: testo italiano lungo -->
+        <p>
+          “Calabriselle” nasce come racconto visivo dedicato alla delicatezza,
+          alla forza e alla memoria di un immaginario femminile legato al Sud.
+          L’evento raccoglie tracce, colori, forme e presenze che evocano radici,
+          identità e appartenenza.
+        </p>
+        <p>
+          Le immagini diventano frammenti di una narrazione intima e collettiva:
+          un dialogo tra tradizione e contemporaneità, tra materia, gesto e luce.
+        </p>
+      </div>
+
+      <div class="text-card en">
+        <h3>English text</h3>
+        <!-- EDITA QUI: testo inglese lungo -->
+        <p>
+          “Calabriselle” unfolds as a visual narrative dedicated to the delicacy,
+          strength and memory of a feminine imagination connected to Southern Italy.
+          The event gathers traces, colours, forms and presences that evoke roots,
+          identity and belonging.
+        </p>
+        <p>
+          The images become fragments of an intimate and collective narration:
+          a dialogue between tradition and contemporaneity, between matter,
+          gesture and light.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="section-kicker">Documents / Documenti</div>
+    <h2 class="section-title">Poster and press release</h2>
+
+    <div class="materials">
+      <article class="material-card">
+        <div class="material-preview">
+          <!-- EDITA QUI: anteprima locandina -->
+          <img src="images/calabriselle-locandina.jpg" alt="Locandina Calabriselle" />
+        </div>
+        <div class="material-content">
+          <h3>Locandina / Poster</h3>
+          <p>
+            Anteprima della locandina ufficiale dell’evento.
+            <br />
+            Preview of the official event poster.
+          </p>
+          <!-- EDITA QUI: PDF locandina -->
+          <a class="button" href="docs/calabriselle-locandina.pdf" target="_blank" rel="noopener">
+            Apri PDF / Open PDF
+          </a>
+        </div>
+      </article>
+
+      <article class="material-card">
+        <div class="material-preview">
+          <!-- EDITA QUI: anteprima comunicato stampa -->
+          <img src="images/calabriselle-comunicato.jpg" alt="Comunicato stampa Calabriselle" />
+        </div>
+        <div class="material-content">
+          <h3>Comunicato stampa / Press release</h3>
+          <p>
+            Documento stampa con testo introduttivo e informazioni sull’evento.
+            <br />
+            Press document with introductory text and event information.
+          </p>
+          <!-- EDITA QUI: PDF comunicato stampa -->
+          <a class="button" href="docs/calabriselle-comunicato-stampa.pdf" target="_blank" rel="noopener">
+            Apri PDF / Open PDF
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-kicker">Photo gallery / Galleria fotografica</div>
+    <h2 class="section-title">Images from the event</h2>
+
+    <p class="edit-note">
+      Carosello predisposto per 8 immagini. Le immagini sono in modalità “contain”:
+      si vedono intere, senza tagli.
+    </p>
+
+    <div class="carousel-wrap">
+      <div class="carousel" aria-label="Carosello immagini Calabriselle">
+        <button class="arrow left" onclick="prevSlide()" aria-label="Immagine precedente">‹</button>
+
+        <!-- EDITA QUI: immagini carosello -->
+        <div class="slide active"><img src="images/calabriselle-01.jpg" alt="Calabriselle immagine 1" /></div>
+        <div class="slide"><img src="images/calabriselle-02.jpg" alt="Calabriselle immagine 2" /></div>
+        <div class="slide"><img src="images/calabriselle-03.jpg" alt="Calabriselle immagine 3" /></div>
+        <div class="slide"><img src="images/calabriselle-04.jpg" alt="Calabriselle immagine 4" /></div>
+        <div class="slide"><img src="images/calabriselle-05.jpg" alt="Calabriselle immagine 5" /></div>
+        <div class="slide"><img src="images/calabriselle-06.jpg" alt="Calabriselle immagine 6" /></div>
+        <div class="slide"><img src="images/calabriselle-07.jpg" alt="Calabriselle immagine 7" /></div>
+        <div class="slide"><img src="images/calabriselle-08.jpg" alt="Calabriselle immagine 8" /></div>
+
+        <button class="arrow right" onclick="nextSlide()" aria-label="Immagine successiva">›</button>
+      </div>
+
+      <div class="carousel-caption" id="carouselCaption">
+        Immagini dell’evento / Images from the event
+      </div>
+
+      <div class="dots" aria-label="Indicatori carosello">
+        <button class="dot active" onclick="showSlide(0)" aria-label="Vai all'immagine 1"></button>
+        <button class="dot" onclick="showSlide(1)" aria-label="Vai all'immagine 2"></button>
+        <button class="dot" onclick="showSlide(2)" aria-label="Vai all'immagine 3"></button>
+        <button class="dot" onclick="showSlide(3)" aria-label="Vai all'immagine 4"></button>
+        <button class="dot" onclick="showSlide(4)" aria-label="Vai all'immagine 5"></button>
+        <button class="dot" onclick="showSlide(5)" aria-label="Vai all'immagine 6"></button>
+        <button class="dot" onclick="showSlide(6)" aria-label="Vai all'immagine 7"></button>
+        <button class="dot" onclick="showSlide(7)" aria-label="Vai all'immagine 8"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="section-kicker">Video / Video</div>
+    <h2 class="section-title">Video moments</h2>
+
+    <p class="edit-note">
+      Due riquadri video predisposti. Puoi sostituire il contenuto con embed Instagram,
+      iframe YouTube/Vimeo, oppure lasciare il bottone verso Instagram.
+    </p>
+
+    <div class="video-grid">
+      <article class="video-card">
+        <div class="video-frame">
+          <!--
+            EDITA QUI — VIDEO 01
+            Opzione Instagram link: cambia solo href del bottone sotto.
+            Opzione embed Instagram: sostituisci questo div con il codice Incorpora.
+            Opzione YouTube/Vimeo: usa un iframe.
+          -->
+          <div>
+            <div class="play-icon">▶</div>
+            Video 01
+          </div>
+        </div>
+        <div class="video-content">
+          <h3>Video racconto / Video story</h3>
+          <p>
+            Spazio riservato al primo video dell’evento.
+            <br />
+            Reserved area for the first event video.
+          </p>
+          <!-- EDITA QUI: link Instagram reale -->
+          <a class="button" href="#" target="_blank" rel="noopener">
+            Guarda su Instagram / Watch on Instagram
+          </a>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="video-frame">
+          <!--
+            EDITA QUI — VIDEO 02
+            Opzione Instagram link: cambia solo href del bottone sotto.
+            Opzione embed Instagram: sostituisci questo div con il codice Incorpora.
+            Opzione YouTube/Vimeo: usa un iframe.
+          -->
+          <div>
+            <div class="play-icon">▶</div>
+            Video 02
+          </div>
+        </div>
+        <div class="video-content">
+          <h3>Behind the event / Dietro l’evento</h3>
+          <p>
+            Spazio riservato al secondo video dell’evento.
+            <br />
+            Reserved area for the second event video.
+          </p>
+          <!-- EDITA QUI: link Instagram reale -->
+          <a class="button" href="#" target="_blank" rel="noopener">
+            Guarda su Instagram / Watch on Instagram
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="bottom-nav">
+    <a class="button" href="gallery.html">← Torna alla Gallery / Back to Gallery</a>
+  </div>
+
+  <footer>
+    Thalassa Gallery — Calabriselle<br>
+    Event page / Pagina evento
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+
+    /*
+      EDITA QUI: didascalie carosello.
+      Devono essere tante quante le immagini.
+    */
+    const captions = [
+      "Immagini dell’evento / Images from the event",
+      "Radici e memoria / Roots and memory",
+      "Dettagli e materia / Details and material presence",
+      "Tradizione e racconto / Tradition and storytelling",
+      "Presenze femminili / Feminine presences",
+      "Colori del Sud / Colours of Southern Italy",
+      "Gesti, segni e luce / Gestures, signs and light",
+      "Archivio visivo / Visual archive"
+    ];
+
+    const caption = document.getElementById("carouselCaption");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides[currentSlide].classList.remove("active");
+      dots[currentSlide].classList.remove("active");
+
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides[currentSlide].classList.add("active");
+      dots[currentSlide].classList.add("active");
+      caption.textContent = captions[currentSlide];
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowRight") nextSlide();
+      if (event.key === "ArrowLeft") prevSlide();
+      if (event.key === "Escape") window.location.href = "gallery.html";
+    });
+
+    setInterval(nextSlide, 7000);
+  </script>
+
+</body>
+</html>
