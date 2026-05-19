@@ -6,16 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!--
+    ==========================================================
     THALASSA SUITES — DICONO DI NOI / PRESS & REVIEWS
-    File: press-reviews.html
+    Versione ottimizzata per LOGHI di riviste/siti web
+    ==========================================================
 
-    Immagini consigliate in /images:
+    FILE:
+    press-reviews.html
+
+    IMMAGINI LOGHI DA CARICARE IN /images:
     images/press-flutteringreyscarf.jpg
     images/press-artribune.jpg
     images/press-lobodilattice.jpg
 
-    Nei pulsanti ho lasciato href="#" perché non sono stati forniti gli URL esatti.
-    Sostituisci # con il link reale dell'articolo.
+    NOTA IMPORTANTE:
+    Questa versione NON forza più le immagini a riempire tutto il riquadro.
+    I loghi vengono mostrati interi, proporzionati e centrati con object-fit: contain.
   -->
 
   <style>
@@ -170,16 +176,17 @@
     .intro-card .en {
       display: block;
       margin-top: 10px;
-      color: var(--soft);
-      font-style: italic;
     }
 
-    .press-list { display: grid; gap: 34px; }
+    .press-list {
+      display: grid;
+      gap: 34px;
+    }
 
     .press-card {
       display: grid;
-      grid-template-columns: 38% 62%;
-      min-height: 350px;
+      grid-template-columns: 34% 66%;
+      min-height: 320px;
       overflow: hidden;
       border-radius: 32px;
       background: var(--glass);
@@ -187,25 +194,56 @@
       box-shadow: 0 26px 76px rgba(0,0,0,0.30);
     }
 
-    .press-image {
-      min-height: 350px;
+    /*
+      BLOCCO LOGO OTTIMIZZATO:
+      - niente height: 100% forzato sull'immagine
+      - niente object-fit: cover
+      - il logo resta intero, centrato e proporzionato
+    */
+    .press-logo-area {
+      min-height: 320px;
       background:
-        radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 56%),
-        #07111f;
+        radial-gradient(circle at center, rgba(255,255,255,0.07), transparent 58%),
+        rgba(7,17,31,0.82);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 18px;
+      padding: 34px;
     }
 
-    .press-image img {
+    .logo-box {
       width: 100%;
-      height: 100%;
-      min-height: 314px;
-      object-fit: cover;
-      object-position: center center;
-      border-radius: 22px;
+      min-height: 190px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
       box-shadow: 0 22px 64px rgba(0,0,0,0.38);
+    }
+
+    .logo-box img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 145px;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    /* Se un logo è molto largo, questa classe lo tiene più elegante */
+    .logo-wide img {
+      max-width: 92%;
+      max-height: 118px;
+    }
+
+    /* Se un logo è molto verticale, questa classe evita che diventi enorme */
+    .logo-tall img {
+      max-height: 158px;
+      max-width: 82%;
     }
 
     .press-content {
@@ -243,9 +281,9 @@
 
     .press-title {
       margin: 0 0 16px;
-      font-size: clamp(29px, 3.5vw, 46px);
+      font-size: clamp(28px, 3.2vw, 43px);
       font-weight: normal;
-      line-height: 1.08;
+      line-height: 1.1;
     }
 
     .press-title-en {
@@ -275,7 +313,10 @@
       line-height: 1.52;
     }
 
-    .bottom-nav { text-align: center; padding: 38px 20px 54px; }
+    .bottom-nav {
+      text-align: center;
+      padding: 38px 20px 54px;
+    }
 
     footer {
       text-align: center;
@@ -286,23 +327,79 @@
     }
 
     @media (min-width: 1180px) {
-      .press-card:nth-child(even) { grid-template-columns: 62% 38%; }
-      .press-card:nth-child(even) .press-image { order: 2; }
-      .press-card:nth-child(even) .press-content { order: 1; }
+      .press-card:nth-child(even) {
+        grid-template-columns: 66% 34%;
+      }
+
+      .press-card:nth-child(even) .press-logo-area {
+        order: 2;
+      }
+
+      .press-card:nth-child(even) .press-content {
+        order: 1;
+      }
     }
 
     @media (max-width: 900px) {
-      .topbar { padding: 16px 22px; align-items: flex-start; flex-direction: column; }
-      .brand { font-size: 15px; letter-spacing: 2px; }
-      .nav-links { justify-content: flex-start; }
-      .nav-link { font-size: 14px; padding: 9px 12px; }
-      .hero { padding: 58px 24px 30px; }
-      .main { padding: 26px 18px 58px; }
-      .intro-card { padding: 28px; border-radius: 24px; }
-      .press-card { grid-template-columns: 1fr; border-radius: 24px; }
-      .press-image { min-height: 270px; }
-      .press-image img { min-height: 234px; }
-      .press-content { padding: 30px 26px 34px; }
+      .topbar {
+        padding: 16px 22px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand {
+        font-size: 15px;
+        letter-spacing: 2px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .nav-link {
+        font-size: 14px;
+        padding: 9px 12px;
+      }
+
+      .hero {
+        padding: 58px 24px 30px;
+      }
+
+      .main {
+        padding: 26px 18px 58px;
+      }
+
+      .intro-card {
+        padding: 28px;
+        border-radius: 24px;
+      }
+
+      .press-card {
+        grid-template-columns: 1fr;
+        border-radius: 24px;
+      }
+
+      .press-logo-area {
+        min-height: 220px;
+        padding: 24px;
+      }
+
+      .logo-box {
+        min-height: 150px;
+        padding: 22px;
+      }
+
+      .logo-box img {
+        max-height: 105px;
+      }
+
+      .logo-wide img {
+        max-height: 92px;
+      }
+
+      .press-content {
+        padding: 30px 26px 34px;
+      }
     }
   </style>
 </head>
@@ -318,7 +415,7 @@
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Art Press & Reviews / Rassegna stampa e recensioni d'arte</div>
+    <div class="eyebrow">Art press & reviews / Rassegna stampa e recensioni d’arte</div>
     <h1>Dicono di noi</h1>
     <p class="subtitle">
       Articoli, recensioni e racconti pubblicati da riviste, magazine e siti specializzati.
@@ -345,40 +442,48 @@
     <section class="press-list" aria-label="Articoli e recensioni">
 
       <article class="press-card">
-        <div class="press-image">
-          <!-- EDITA QUI: miniatura articolo -->
-          <img src="images/press-flutteringreyscarf.jpg" alt="Flutteringreyscarf.it - Thalassa Suites" />
+        <div class="press-logo-area">
+          <div class="logo-box logo-wide">
+            <img src="images/press-flutteringreyscarf.jpg" alt="Flutteringreyscarf.it logo" />
+          </div>
         </div>
 
         <div class="press-content">
           <div class="source-row">
             <span class="source">Flutteringreyscarf.it</span>
-            <span class="tag">Design B&amp;B</span>
+            <span class="tag">Design B&B</span>
           </div>
 
-          <h2 class="press-title">In Puglia, il fascino di un B&amp;B di design con tanto di Galleria</h2>
+          <h2 class="press-title">
+            In Puglia, il fascino di un B&B di design con tanto di Galleria
+          </h2>
 
-          <p class="press-title-en">In Puglia, the charm of a design B&amp;B complete with its own Gallery.</p>
+          <p class="press-title-en">
+            In Puglia, the charm of a design B&B complete with its own Gallery.
+          </p>
 
           <p class="press-meta">
             <strong>Rivista / Website:</strong> Flutteringreyscarf.it<br />
-            <strong>Indirizzo / Address:</strong> inserisci qui il link esatto dell'articolo.
+            <strong>Indirizzo / Address:</strong> inserisci qui il link esatto dell’articolo.
           </p>
 
           <p class="note">
-            Scheda predisposta per miniatura, titolo, fonte e collegamento alla recensione.<br />
-            <span class="en">Card prepared for thumbnail, title, source and review link.</span>
+            Scheda predisposta per logo, titolo, fonte e collegamento alla recensione.
+            <br />
+            <span class="en">Card prepared for logo, title, source and review link.</span>
           </p>
 
-          <!-- EDITA QUI: sostituisci # con l'URL reale dell'articolo -->
-          <a class="button" href="#" target="_blank" rel="noopener">Leggi articolo / Read article</a>
+          <a class="button" href="#" target="_blank" rel="noopener">
+            Leggi articolo / Read article
+          </a>
         </div>
       </article>
 
       <article class="press-card">
-        <div class="press-image">
-          <!-- EDITA QUI: miniatura articolo -->
-          <img src="images/press-artribune.jpg" alt="Artribune - Thalassa Gallery" />
+        <div class="press-logo-area">
+          <div class="logo-box logo-wide">
+            <img src="images/press-artribune.jpg" alt="Artribune logo" />
+          </div>
         </div>
 
         <div class="press-content">
@@ -387,29 +492,36 @@
             <span class="tag">Contemporary Art</span>
           </div>
 
-          <h2 class="press-title">In Puglia a Porto Cesareo apre Thalassa Gallery diretta dall'artista Luigi Presicce</h2>
+          <h2 class="press-title">
+            In Puglia a Porto Cesareo apre Thalassa Gallery diretta dall’artista Luigi Presicce
+          </h2>
 
-          <p class="press-title-en">Thalassa Gallery opens in Porto Cesareo, Puglia, directed by artist Luigi Presicce.</p>
+          <p class="press-title-en">
+            Thalassa Gallery opens in Porto Cesareo, Puglia, directed by artist Luigi Presicce.
+          </p>
 
           <p class="press-meta">
             <strong>Rivista / Website:</strong> Artribune<br />
-            <strong>Indirizzo / Address:</strong> inserisci qui il link esatto dell'articolo.
+            <strong>Indirizzo / Address:</strong> inserisci qui il link esatto dell’articolo.
           </p>
 
           <p class="note">
-            Articolo dedicato all'apertura della prima galleria a Porto Cesareo in Salento.<br />
+            Articolo dedicato all’apertura della prima galleria a Porto Cesareo in Salento.
+            <br />
             <span class="en">Feature dedicated to the opening of the first gallery in Porto Cesareo, Salento.</span>
           </p>
 
-          <!-- EDITA QUI: sostituisci # con l'URL reale dell'articolo -->
-          <a class="button" href="#" target="_blank" rel="noopener">Leggi articolo / Read article</a>
+          <a class="button" href="#" target="_blank" rel="noopener">
+            Leggi articolo / Read article
+          </a>
         </div>
       </article>
 
       <article class="press-card">
-        <div class="press-image">
-          <!-- EDITA QUI: miniatura articolo -->
-          <img src="images/press-lobodilattice.jpg" alt="LOBODILATTICE - Thalassa Gallery" />
+        <div class="press-logo-area">
+          <div class="logo-box logo-wide">
+            <img src="images/press-lobodilattice.jpg" alt="LOBODILATTICE logo" />
+          </div>
         </div>
 
         <div class="press-content">
@@ -418,22 +530,28 @@
             <span class="tag">Interview</span>
           </div>
 
-          <h2 class="press-title">//Focus on cultural worker// Tra natura e memoria, apre nel Salento Thalassa Gallery. L'intervista al fondatore Salvatore Baldi</h2>
+          <h2 class="press-title">
+            //Focus on cultural worker// Tra natura e memoria, apre nel Salento Thalassa Gallery. L’intervista al fondatore Salvatore Baldi
+          </h2>
 
-          <p class="press-title-en">Between nature and memory, Thalassa Gallery opens in Salento: an interview with founder Salvatore Baldi.</p>
+          <p class="press-title-en">
+            Between nature and memory, Thalassa Gallery opens in Salento: an interview with founder Salvatore Baldi.
+          </p>
 
           <p class="press-meta">
             <strong>Rivista / Website:</strong> LOBODILATTICE<br />
-            <strong>Indirizzo / Address:</strong> inserisci qui il link esatto dell'articolo.
+            <strong>Indirizzo / Address:</strong> inserisci qui il link esatto dell’articolo.
           </p>
 
           <p class="note">
-            Intervista e approfondimento sul progetto culturale di Thalassa Gallery.<br />
+            Intervista e approfondimento sul progetto culturale di Thalassa Gallery.
+            <br />
             <span class="en">Interview and feature on the cultural project behind Thalassa Gallery.</span>
           </p>
 
-          <!-- EDITA QUI: sostituisci # con l'URL reale dell'articolo -->
-          <a class="button" href="#" target="_blank" rel="noopener">Leggi articolo / Read article</a>
+          <a class="button" href="#" target="_blank" rel="noopener">
+            Leggi articolo / Read article
+          </a>
         </div>
       </article>
 
