@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guida Ospiti | Thalassa Suites</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    THALASSA SUITES — GUIDA OSPITI / GUEST GUIDE
+    File consigliato per il sito: mobile.html
+    File alternativo: guida-ospiti.html
+    Pagina bilingue: italiano + inglese.
+  -->
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --navy: #07111f;
+      --navy-2: #10263f;
+      --cream: #f7f3ea;
+      --gold: #d7c28a;
+      --muted: rgba(247, 243, 234, 0.72);
+      --soft: rgba(247, 243, 234, 0.58);
+      --glass: rgba(255, 255, 255, 0.075);
+      --glass-border: rgba(255, 255, 255, 0.16);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(215, 194, 138, 0.14), transparent 31%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 34%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 56%, var(--navy) 100%);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 17, 31, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+      font-size: 18px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link,
+    .button {
+      text-decoration: none;
+      font-size: 15px;
+      opacity: 0.9;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.055);
+      transition: all 0.24s ease;
+      display: inline-block;
+      width: fit-content;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus,
+    .button:hover,
+    .button:focus {
+      opacity: 1;
+      outline: none;
+      border-color: rgba(215,194,138,0.7);
+      background: rgba(215,194,138,0.16);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 84px 8vw 42px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 86px);
+      margin: 0;
+      font-weight: normal;
+      letter-spacing: 1.5px;
+      line-height: 1.02;
+    }
+
+    .subtitle {
+      max-width: 860px;
+      margin: 24px auto 0;
+      font-size: clamp(19px, 2.2vw, 23px);
+      line-height: 1.6;
+      color: rgba(247,243,234,0.84);
+    }
+
+    .subtitle .en {
+      display: block;
+      margin-top: 12px;
+      color: rgba(247,243,234,0.68);
+      font-style: italic;
+    }
+
+    .main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 28px 82px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      margin-bottom: 38px;
+    }
+
+    .card {
+      border-radius: 30px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 24px 74px rgba(0,0,0,0.28);
+      padding: 34px;
+      min-height: 238px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(215, 194, 138, 0.08);
+      pointer-events: none;
+    }
+
+    .card-label {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-size: 12px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: normal;
+      line-height: 1.08;
+      position: relative;
+      z-index: 1;
+    }
+
+    .data-row {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 16px;
+      align-items: baseline;
+      padding: 13px 0;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      position: relative;
+      z-index: 1;
+    }
+
+    .data-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .label {
+      color: var(--gold);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .value {
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .value.small {
+      font-size: 22px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .description {
+      margin: 18px 0 0;
+      font-size: 18px;
+      line-height: 1.58;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .description .en,
+    .en {
+      color: var(--soft);
+      font-style: italic;
+    }
+
+    .rules,
+    .assistance {
+      margin-top: 34px;
+      border-radius: 34px;
+      background: rgba(255,255,255,0.095);
+      border: 1px solid rgba(215,194,138,0.26);
+      box-shadow: 0 28px 82px rgba(0,0,0,0.32);
+      padding: 42px;
+    }
+
+    .rules h2,
+    .assistance h2 {
+      margin: 0 0 26px;
+      font-size: clamp(34px, 4.4vw, 58px);
+      font-weight: normal;
+      line-height: 1.08;
+    }
+
+    .schedule-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .schedule-card,
+    .contact-card {
+      padding: 28px;
+      border-radius: 26px;
+      background: rgba(7,17,31,0.38);
+      border: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .schedule-title,
+    .contact-role {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .schedule-main {
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .schedule-note {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.55;
+      color: rgba(247,243,234,0.66);
+    }
+
+    .assistance-intro {
+      margin: 14px 0 28px;
+      max-width: 780px;
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .contact-name {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .phone {
+      font-size: clamp(23px, 3vw, 34px);
+      text-decoration: none;
+      color: var(--cream);
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .phone:hover,
+    .phone:focus {
+      color: var(--gold);
+      outline: none;
+    }
+
+    .small-note {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: rgba(247,243,234,0.62);
+    }
+
+    .bottom-nav {
+      text-align: center;
+      padding: 12px 20px 54px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 0 20px 42px;
+      color: rgba(247,243,234,0.55);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 880px) {
+      .topbar {
+        padding: 16px 22px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand {
+        font-size: 15px;
+        letter-spacing: 2px;
+      }
+
+      .nav-links { justify-content: flex-start; }
+
+      .nav-link {
+        font-size: 14px;
+        padding: 9px 12px;
+      }
+
+      .hero { padding: 58px 24px 30px; }
+
+      .main { padding: 26px 18px 58px; }
+
+      .quick-grid,
+      .schedule-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .rules,
+      .assistance {
+        border-radius: 24px;
+        padding: 28px;
+      }
+
+      .data-row {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .schedule-card,
+      .contact-card { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">Thalassa Suites</div>
+    <nav class="nav-links" aria-label="Navigazione">
+      <a class="nav-link" href="index.html">← Home</a>
+      <a class="nav-link" href="check-out.html">Check-in & Check-out</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Guest guide / Guida ospiti</div>
+    <h1>Guida Ospiti</h1>
+    <p class="subtitle">
+      Informazioni essenziali per il tuo soggiorno a Thalassa Suites.
+      <span class="en">
+        Essential information for your stay at Thalassa Suites.
+      </span>
+    </p>
+  </section>
+
+  <main class="main">
+
+    <section class="quick-grid" aria-label="Informazioni rapide">
+
+      <article class="card">
+        <div class="card-label">Wi-Fi</div>
+        <h2>Accesso Internet</h2>
+
+        <div class="data-row">
+          <div class="label">User / Network</div>
+          <div class="value small">Thalassa_Suites</div>
+        </div>
+
+        <div class="data-row">
+          <div class="label">Password</div>
+          <div class="value small">Rose1925</div>
+        </div>
+
+        <p class="description">
+          Usa queste credenziali per collegarti alla rete Wi-Fi della struttura.
+          <br />
+          <span class="en">Use these credentials to connect to the property Wi-Fi network.</span>
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-label">Safe / Cassaforte</div>
+        <h2>Cassaforte</h2>
+
+        <div class="data-row">
+          <div class="label">Codice di sblocco</div>
+          <div class="value">1111</div>
+        </div>
+
+        <p class="description">
+          Codice di sblocco della cassaforte.
+          <br />
+          <span class="en">Safe unlock code.</span>
+        </p>
+      </article>
+
+    </section>
+
+    <section class="rules" aria-label="Regole della struttura">
+      <div class="eyebrow">House rules / Regole della struttura</div>
+      <h2>Orari principali</h2>
+
+      <div class="schedule-grid">
+
+        <article class="schedule-card">
+          <div class="schedule-title">Check-in</div>
+          <div class="schedule-main">16:00 — 20:00</div>
+          <p class="schedule-note">
+            Check-in dalle 16:00 alle 20:00.
+            <br />
+            <span class="en">Check-in from 4:00 PM to 8:00 PM.</span>
+          </p>
+        </article>
+
+        <article class="schedule-card">
+          <div class="schedule-title">Check-out</div>
+          <div class="schedule-main">entro le 10:00</div>
+          <p class="schedule-note">
+            Check-out entro le ore 10:00.
+            <br />
+            <span class="en">Check-out by 10:00 AM.</span>
+          </p>
+        </article>
+
+        <article class="schedule-card">
+          <div class="schedule-title">Breakfast / Colazione</div>
+          <div class="schedule-main">07:30 — 10:00</div>
+          <p class="schedule-note">
+            Colazione dalle 07:30 alle 10:00.
+            <br />
+            <span class="en">Breakfast from 7:30 AM to 10:00 AM.</span>
+          </p>
+        </article>
+
+        <article class="schedule-card">
+          <div class="schedule-title">Housekeeping / Pulizie</div>
+          <div class="schedule-main">10:00 — 13:00</div>
+          <p class="schedule-note">
+            Pulizie giornaliere dalle 10:00 alle 13:00.
+            <br />
+            <span class="en">Daily housekeeping from 10:00 AM to 1:00 PM.</span>
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="assistance" aria-label="Assistenza ospiti">
+      <div class="eyebrow">Guest assistance / Assistenza ospiti</div>
+      <h2>Contatti utili</h2>
+      <p class="assistance-intro">
+        Per informazioni o necessità durante il soggiorno, puoi contattare i seguenti riferimenti.
+        <br />
+        <span class="en">For information or assistance during your stay, please contact the numbers below.</span>
+      </p>
+
+      <div class="contact-grid">
+        <article class="contact-card">
+          <div class="contact-role">Guest support</div>
+          <div class="contact-name">Federica</div>
+          <a class="phone" href="tel:+393283435031">+39 328 343 5031</a>
+          <p class="small-note">Assistenza ospiti / Guest assistance</p>
+        </article>
+
+        <article class="contact-card">
+          <div class="contact-role">Gallery support</div>
+          <div class="contact-name">Thalassa Gallery</div>
+          <a class="phone" href="tel:+393336174872">+39 333 617 4872</a>
+          <p class="small-note">Informazioni Thalassa Gallery / Thalassa Gallery information</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="bottom-nav">
+    <a class="button" href="index.html">← Torna alla Home / Back to Home</a>
+  </div>
+
+  <footer>
+    Thalassa Suites — Guida Ospiti / Guest Guide<br>
+    Wi-Fi, Safe, House Rules & Guest Assistance
+  </footer>
+
+</body>
+</html>
