@@ -504,6 +504,97 @@
       .qr{margin:0 auto;}
       .bottom{margin-top:30px;display:block;line-height:1.7;}
     }
+  
+    /* RIPARAZIONE HOME: Gallery evidenziata compatta e fittata */
+    .gallery-feature{
+      display:grid !important;
+      grid-template-columns:118px minmax(0,1fr) auto !important;
+      gap:18px !important;
+      align-items:center !important;
+      min-height:112px !important;
+      padding:14px 16px !important;
+      margin:0 !important;
+      border-radius:26px !important;
+      overflow:hidden !important;
+      background:linear-gradient(180deg, rgba(217,231,242,.17), rgba(255,255,255,.055)) !important;
+      border:1px solid rgba(217,231,242,.36) !important;
+    }
+
+    .gallery-thumb{
+      width:118px !important;
+      height:78px !important;
+      border-radius:18px !important;
+      overflow:hidden !important;
+      background:rgba(255,255,255,.08) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      flex-shrink:0 !important;
+    }
+
+    .gallery-thumb img{
+      width:100% !important;
+      height:100% !important;
+      object-fit:cover !important;
+      object-position:center center !important;
+      display:block !important;
+    }
+
+    .gallery-text{min-width:0 !important;}
+
+    .gallery-label{
+      font-size:10.5px !important;
+      line-height:1.25 !important;
+      margin-bottom:6px !important;
+      color:#d7c28a !important;
+      text-transform:uppercase !important;
+      letter-spacing:2px !important;
+    }
+
+    .gallery-text h2{
+      margin:0 0 6px !important;
+      font-size:24px !important;
+      line-height:1.05 !important;
+      font-weight:700 !important;
+    }
+
+    .gallery-text p{
+      margin:0 !important;
+      font-size:13px !important;
+      line-height:1.32 !important;
+      color:rgba(248,250,252,.82) !important;
+    }
+
+    .gallery-text p span{
+      display:block !important;
+      margin-top:3px !important;
+      color:rgba(248,250,252,.62) !important;
+    }
+
+    .gallery-chip{
+      justify-self:end !important;
+      padding:10px 16px !important;
+      border-radius:999px !important;
+      border:1px solid rgba(220,232,244,.20) !important;
+      color:rgba(248,250,252,.82) !important;
+      font-size:12px !important;
+      white-space:nowrap !important;
+      background:rgba(255,255,255,.06) !important;
+    }
+
+    @media(max-width:900px){
+      .gallery-feature{
+        grid-template-columns:96px 1fr !important;
+        gap:14px !important;
+        padding:14px !important;
+      }
+      .gallery-thumb{
+        width:96px !important;
+        height:72px !important;
+      }
+      .gallery-chip{display:none !important;}
+    }
+
   </style>
 </head>
 
@@ -538,7 +629,7 @@
               <div class="icon">⌁</div>
               <div>
                 <h2>Guida ospiti · Guest guide</h2>
-                <p>Wi‑Fi, ‑out, regole casa · Wi‑Fi, ‑out, house rules</p>
+                <p>Wi‑Fi, cassaforte, regole casa · Wi‑Fi, safe, house rules</p>
               </div>
               <div class="chip">Apri · Open</div>
             </a>
@@ -604,15 +695,7 @@
 
   <div class="gallery-chip">Apri · Open</div>
 </a>
-            
-            <a class="item" href="mobile.html#wifi" tabindex="0">
-              <div class="icon">⌁</div>
-              <div>
-                <h2>Wi‑Fi</h2>
-                <p>Rete e password · Network and password</p>
-              </div>
-              <div class="chip">Apri · Open</div>
-            </a>
+
           </nav>
 
           <div class="qr-section">
@@ -626,17 +709,17 @@
       </section>
 
       <footer class="bottom">
-        <div class="status"><span class="line"></span><span>Wi‑Fi: Thalassa Guest · Password: mare2026</span></div>
+        <div class="status"><span class="line"></span><span>Wi‑Fi: Thalassa_Suites · Password: Rose1925</span></div>
         <div>Check‑out 10:00 · WhatsApp support</div>
       </footer>
     </section>
   </main>
 
   <script>
-    const links = Array.from(document.querySelectorAll('.menu .item'));
+    const links = Array.from(document.querySelectorAll('.menu .item, .menu .gallery-feature'));
 
     function focusFirst(){
-      if(links.length && !document.activeElement.classList.contains('item')){
+      if(links.length && !links.includes(document.activeElement)){
         links[0].focus();
       }
     }
