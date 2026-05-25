@@ -7,129 +7,6 @@
   <title>Thalassa Suites TV</title>
 
   <style>
-.gallery-feature {
-  display: grid;
-  grid-template-columns: 122px minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  margin: 18px 0 14px;
-  padding: 16px 20px;
-  min-height: 118px;
-  height: auto;
-  border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055));
-  border: 1px solid rgba(255,255,255,0.22);
-  box-shadow: 0 22px 60px rgba(0,0,0,0.30);
-  transition: all 0.25s ease;
-  overflow: hidden;
-}
-
-.gallery-feature:hover,
-.gallery-feature:focus {
-  outline: none;
-  transform: translateY(-2px);
-  border-color: rgba(215,194,138,0.72);
-  background: linear-gradient(135deg, rgba(215,194,138,0.18), rgba(255,255,255,0.07));
-}
-
-.gallery-thumb {
-  width: 122px;
-  height: 82px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #07111f;
-  border: 1px solid rgba(255,255,255,0.20);
-  box-shadow: 0 16px 38px rgba(0,0,0,0.34);
-  flex-shrink: 0;
-}
-
-.gallery-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
-}
-
-.gallery-text {
-  min-width: 0;
-}
-
-.gallery-label {
-  color: #d7c28a;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 11px;
-  line-height: 1.25;
-  margin-bottom: 7px;
-}
-
-.gallery-text h2 {
-  margin: 0 0 7px;
-  font-size: 25px;
-  line-height: 1.05;
-  font-weight: 700;
-}
-
-.gallery-text p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
-  color: rgba(247,243,234,0.82);
-}
-
-.gallery-text p span {
-  display: block;
-  margin-top: 3px;
-  color: rgba(247,243,234,0.60);
-}
-
-.gallery-chip {
-  justify-self: end;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.28);
-  color: #f7f3ea;
-  font-size: 14px;
-  white-space: nowrap;
-  background: rgba(255,255,255,0.07);
-}
-
-@media (max-width: 760px) {
-  .gallery-feature {
-    grid-template-columns: 96px 1fr;
-    gap: 14px;
-    padding: 15px;
-  }
-
-  .gallery-thumb {
-    width: 96px;
-    height: 72px;
-  }
-
-  .gallery-label {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-  }
-
-  .gallery-text h2 {
-    font-size: 21px;
-  }
-
-  .gallery-text p {
-    font-size: 13px;
-  }
-
-  .gallery-chip {
-    grid-column: 2;
-    justify-self: start;
-    margin-top: 8px;
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-}
     :root{
       --ink:#020817;
       --navy:#06172d;
@@ -138,11 +15,10 @@
       --mist:rgba(248,250,252,.78);
       --soft:#b9c6d3;
       --line:rgba(220,232,244,.17);
-      --panel:rgba(4,14,29,.52);
-      --panel-strong:rgba(4,14,29,.72);
       --accent:#d9e7f2;
       --accent-2:#a8c7df;
       --focus:rgba(191,219,242,.82);
+      --gold:#d7c28a;
     }
 
     *{box-sizing:border-box;}
@@ -150,13 +26,14 @@
     html,body{
       margin:0;
       width:100%;
-      height:100%;
-      overflow:hidden;
+      min-height:100%;
       background:var(--ink);
       color:var(--white);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
       letter-spacing:-.02em;
     }
+
+    body{overflow:hidden;}
 
     a{color:inherit;text-decoration:none;}
 
@@ -251,7 +128,7 @@
       gap:14px;
     }
 
-    .dot{
+    .brand-dot{
       width:9px;
       height:9px;
       border-radius:999px;
@@ -264,11 +141,10 @@
       grid-template-columns:1.05fr .95fr;
       align-items:center;
       gap:62px;
+      min-height:0;
     }
 
-    .hero{
-      max-width:850px;
-    }
+    .hero{max-width:850px;}
 
     .eyebrow{
       color:var(--accent-2);
@@ -305,18 +181,19 @@
 
     .panel{
       width:100%;
-      max-width:620px;
+      max-width:640px;
       justify-self:end;
       background:linear-gradient(180deg, rgba(8,25,48,.62), rgba(3,12,26,.54));
       border:1px solid var(--line);
       border-radius:34px;
-      padding:24px;
+      padding:22px;
       backdrop-filter:blur(28px);
       box-shadow:0 34px 100px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
+      min-height:0;
     }
 
     .menu-title{
-      padding:8px 8px 16px;
+      padding:8px 8px 14px;
       font-size:20px;
       font-weight:400;
       color:rgba(248,250,252,.90);
@@ -335,8 +212,8 @@
 
     .menu{
       display:grid;
-      gap:10px;
-      max-height:650px;
+      gap:9px;
+      max-height:620px;
       overflow:hidden;
     }
 
@@ -345,8 +222,8 @@
       grid-template-columns:44px 1fr auto;
       align-items:center;
       gap:14px;
-      min-height:68px;
-      padding:13px 16px;
+      min-height:62px;
+      padding:11px 16px;
       border:1px solid rgba(220,232,244,.11);
       border-radius:23px;
       background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.032));
@@ -359,22 +236,23 @@
       border-color:rgba(168,199,223,.42);
     }
 
-    .item.gallery{
-      background:linear-gradient(180deg, rgba(217,231,242,.20), rgba(255,255,255,.055));
-      border-color:rgba(217,231,242,.42);
-    }
-
     .item:hover,
     .item:focus,
-    .item:focus-visible{
+    .item:focus-visible,
+    .gallery-feature:hover,
+    .gallery-feature:focus,
+    .gallery-feature:focus-visible{
       transform:translateY(-2px) scale(1.012);
       background:linear-gradient(180deg, rgba(191,219,242,.20), rgba(255,255,255,.07));
       border-color:var(--focus);
       box-shadow:0 0 0 3px rgba(168,199,223,.16), 0 22px 55px rgba(0,0,0,.38);
+      outline:none;
     }
 
     .item:focus .chip,
-    .item:hover .chip{
+    .item:hover .chip,
+    .gallery-feature:focus .gallery-chip,
+    .gallery-feature:hover .gallery-chip{
       border-color:rgba(217,231,242,.62);
       color:var(--white);
       background:rgba(168,199,223,.13);
@@ -395,16 +273,16 @@
 
     .item h2{
       margin:0 0 2px;
-      font-size:19px;
-      font-weight:520;
+      font-size:18px;
+      font-weight:620;
       letter-spacing:-.035em;
     }
 
     .item p{
       margin:0;
       color:var(--soft);
-      font-size:13px;
-      line-height:1.35;
+      font-size:12.5px;
+      line-height:1.32;
       letter-spacing:-.01em;
     }
 
@@ -419,13 +297,97 @@
       transition:all .18s ease;
     }
 
-    .qr-section{
-      margin-top:14px;
+    .gallery-feature{
       display:grid;
-      grid-template-columns:132px 1fr;
+      grid-template-columns:118px minmax(0,1fr) auto;
       gap:18px;
       align-items:center;
-      padding:16px;
+      text-decoration:none;
+      color:inherit;
+      padding:14px 16px;
+      min-height:112px;
+      border-radius:26px;
+      background:linear-gradient(180deg, rgba(217,231,242,.17), rgba(255,255,255,.055));
+      border:1px solid rgba(217,231,242,.36);
+      box-shadow:0 18px 55px rgba(0,0,0,.25);
+      transition:transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+      outline:none;
+    }
+
+    .gallery-thumb{
+      width:118px;
+      height:78px;
+      border-radius:18px;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 16px 38px rgba(0,0,0,.34);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .gallery-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      display:block;
+    }
+
+    .gallery-text{min-width:0;}
+
+    .gallery-label{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:10.5px;
+      line-height:1.25;
+      margin-bottom:6px;
+    }
+
+    .gallery-text h2{
+      margin:0 0 6px;
+      font-size:24px;
+      line-height:1.05;
+      font-weight:700;
+      letter-spacing:-.04em;
+    }
+
+    .gallery-text p{
+      margin:0;
+      font-size:13px;
+      line-height:1.32;
+      color:rgba(248,250,252,.82);
+    }
+
+    .gallery-text p span{
+      display:block;
+      margin-top:3px;
+      color:rgba(248,250,252,.62);
+    }
+
+    .gallery-chip{
+      justify-self:end;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(220,232,244,.20);
+      color:rgba(248,250,252,.82);
+      font-size:12px;
+      letter-spacing:.04em;
+      white-space:nowrap;
+      background:rgba(255,255,255,.06);
+      transition:all .18s ease;
+    }
+
+    .qr-section{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:118px 1fr;
+      gap:18px;
+      align-items:center;
+      padding:14px;
       border-radius:26px;
       background:rgba(2,8,23,.50);
       border:1px solid rgba(168,199,223,.24);
@@ -433,8 +395,8 @@
     }
 
     .qr{
-      width:132px;
-      height:132px;
+      width:118px;
+      height:118px;
       border-radius:20px;
       padding:10px;
       background:#fff;
@@ -450,14 +412,14 @@
     .qr-copy h3{
       margin:0 0 6px;
       font-size:21px;
-      font-weight:470;
+      font-weight:520;
       letter-spacing:-.045em;
     }
 
     .qr-copy p{
       margin:0;
       color:var(--soft);
-      font-size:14px;
+      font-size:13px;
       line-height:1.42;
     }
 
@@ -484,7 +446,7 @@
     }
 
     @media(max-width:900px){
-      html,body{overflow:auto;height:auto;}
+      body{overflow:auto;}
       body::after{display:none;}
       .screen{height:auto;min-height:100vh;background:linear-gradient(180deg,#08192f,#020817);}
       .slide,.screen::after{display:none;}
@@ -500,101 +462,23 @@
       .remote-hint{display:block;margin-top:6px;}
       .item{grid-template-columns:40px 1fr;}
       .chip{display:none;}
+      .gallery-feature{
+        grid-template-columns:96px 1fr;
+        gap:14px;
+        padding:14px;
+      }
+      .gallery-thumb{
+        width:96px;
+        height:72px;
+      }
+      .gallery-label{font-size:10px;letter-spacing:1.5px;}
+      .gallery-text h2{font-size:21px;}
+      .gallery-text p{font-size:12.5px;}
+      .gallery-chip{display:none;}
       .qr-section{grid-template-columns:1fr;text-align:center;}
       .qr{margin:0 auto;}
       .bottom{margin-top:30px;display:block;line-height:1.7;}
     }
-  
-    /* RIPARAZIONE HOME: Gallery evidenziata compatta e fittata */
-    .gallery-feature{
-      display:grid !important;
-      grid-template-columns:118px minmax(0,1fr) auto !important;
-      gap:18px !important;
-      align-items:center !important;
-      min-height:112px !important;
-      padding:14px 16px !important;
-      margin:0 !important;
-      border-radius:26px !important;
-      overflow:hidden !important;
-      background:linear-gradient(180deg, rgba(217,231,242,.17), rgba(255,255,255,.055)) !important;
-      border:1px solid rgba(217,231,242,.36) !important;
-    }
-
-    .gallery-thumb{
-      width:118px !important;
-      height:78px !important;
-      border-radius:18px !important;
-      overflow:hidden !important;
-      background:rgba(255,255,255,.08) !important;
-      display:flex !important;
-      align-items:center !important;
-      justify-content:center !important;
-      flex-shrink:0 !important;
-    }
-
-    .gallery-thumb img{
-      width:100% !important;
-      height:100% !important;
-      object-fit:cover !important;
-      object-position:center center !important;
-      display:block !important;
-    }
-
-    .gallery-text{min-width:0 !important;}
-
-    .gallery-label{
-      font-size:10.5px !important;
-      line-height:1.25 !important;
-      margin-bottom:6px !important;
-      color:#d7c28a !important;
-      text-transform:uppercase !important;
-      letter-spacing:2px !important;
-    }
-
-    .gallery-text h2{
-      margin:0 0 6px !important;
-      font-size:24px !important;
-      line-height:1.05 !important;
-      font-weight:700 !important;
-    }
-
-    .gallery-text p{
-      margin:0 !important;
-      font-size:13px !important;
-      line-height:1.32 !important;
-      color:rgba(248,250,252,.82) !important;
-    }
-
-    .gallery-text p span{
-      display:block !important;
-      margin-top:3px !important;
-      color:rgba(248,250,252,.62) !important;
-    }
-
-    .gallery-chip{
-      justify-self:end !important;
-      padding:10px 16px !important;
-      border-radius:999px !important;
-      border:1px solid rgba(220,232,244,.20) !important;
-      color:rgba(248,250,252,.82) !important;
-      font-size:12px !important;
-      white-space:nowrap !important;
-      background:rgba(255,255,255,.06) !important;
-    }
-
-    @media(max-width:900px){
-      .gallery-feature{
-        grid-template-columns:96px 1fr !important;
-        gap:14px !important;
-        padding:14px !important;
-      }
-      .gallery-thumb{
-        width:96px !important;
-        height:72px !important;
-      }
-      .gallery-chip{display:none !important;}
-    }
-
   </style>
 </head>
 
@@ -606,7 +490,7 @@
 
     <section class="ui">
       <header class="topbar">
-        <div class="brandmark"><span class="dot"></span><span>Thalassa Suites TV</span></div>
+        <div class="brandmark"><span class="brand-dot"></span><span>Thalassa Suites TV</span></div>
         <div>Guest Digital Concierge</div>
       </header>
 
@@ -661,7 +545,7 @@
               <div class="chip">Apri · Open</div>
             </a>
 
-           <a class="item" href="mobile.html#services" tabindex="0">
+            <a class="item" href="mobile.html#services" tabindex="0">
               <div class="icon">✦</div>
               <div>
                 <h2>Servizi · Services</h2>
@@ -671,35 +555,36 @@
             </a>
 
             <a class="item" href="press-reviews.html" tabindex="0">
-            <div class="icon">★</div>
-            <div>
-            <h2>Dicono di noi</h2>
-            <p>Rassegna stampa e recensioni d’arte · Art Press & Reviews</p>
-            </div>
-           <div class="chip">Apri · Open</div>
-           </a>
-            
-     <a class="gallery-feature" href="gallery.html" tabindex="0">
-  <div class="gallery-thumb">
-    <img src="images/gallery-home.jpg" alt="Thalassa Gallery">
-  </div>
+              <div class="icon">★</div>
+              <div>
+                <h2>Dicono di noi</h2>
+                <p>Rassegna stampa e recensioni d’arte · Art Press & Reviews</p>
+              </div>
+              <div class="chip">Apri · Open</div>
+            </a>
 
-  <div class="gallery-text">
-    <div class="gallery-label">Art Gallery · Ground Floor</div>
-    <h2>Thalassa Gallery</h2>
-    <p>
-      Mostre, eventi e progetti visivi.
-      <span>Exhibitions, events and visual projects.</span>
-    </p>
-  </div>
+            <a class="gallery-feature" href="gallery.html" tabindex="0">
+              <div class="gallery-thumb">
+                <img src="images/gallery-home.jpg" alt="Thalassa Gallery">
+              </div>
 
-  <div class="gallery-chip">Apri · Open</div>
-</a>
+              <div class="gallery-text">
+                <div class="gallery-label">Art Gallery · Ground Floor</div>
+                <h2>Thalassa Gallery</h2>
+                <p>
+                  Mostre, eventi e progetti visivi.
+                  <span>Exhibitions, events and visual projects.</span>
+                </p>
+              </div>
 
+              <div class="gallery-chip">Apri · Open</div>
+            </a>
           </nav>
 
           <div class="qr-section">
-            <div class="qr"><img src="images/qr-thalassa-mobile.png" alt="QR code guida ospiti Thalassa Suites" /></div>
+            <div class="qr">
+              <img src="images/qr-thalassa-mobile.png" alt="QR code guida ospiti Thalassa Suites" />
+            </div>
             <div class="qr-copy">
               <h3>Scansiona · Scan</h3>
               <p>Usa il telefono per navigare meglio. Oppure usa il telecomando: frecce e OK.</p>
