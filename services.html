@@ -1,1 +1,902 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Servizi · Services | Thalassa Suites</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    ==========================================================
+    THALASSA SUITES — SERVIZI / SERVICES
+    VERSIONE CORRETTA: LOCALI FOOD & WINE SEPARATI
+    ==========================================================
+
+    FILE DA USARE SU GITHUB:
+    services.html
+
+    IMMAGINI CONSIGLIATE DA CARICARE IN /images:
+    images/services-pescaturismo.jpg
+    images/services-horse-riding.jpg
+    images/services-ceap.jpg
+    images/services-enoteca-sapori-arneo.jpg
+    images/services-la-putea.jpg
+    images/services-bar-mykonos.jpg
+    images/services-porto-selvaggio.jpg
+    images/services-birra-salento.jpg
+    images/services-lac-o-le-mon.jpg
+    images/services-campo-giganti.jpg
+
+    LINK:
+    I pulsanti hanno href="#".
+    Sostituisci # con gli indirizzi reali quando disponibili.
+  -->
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --navy: #07111f;
+      --navy-2: #10263f;
+      --cream: #f7f3ea;
+      --gold: #d7c28a;
+      --muted: rgba(247, 243, 234, 0.72);
+      --soft: rgba(247, 243, 234, 0.58);
+      --glass: rgba(255, 255, 255, 0.075);
+      --glass-border: rgba(255, 255, 255, 0.16);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(215, 194, 138, 0.14), transparent 31%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 34%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 56%, var(--navy) 100%);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 17, 31, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+      font-size: 18px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link,
+    .button {
+      text-decoration: none;
+      font-size: 15px;
+      opacity: 0.92;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.055);
+      transition: all 0.24s ease;
+      display: inline-block;
+      width: fit-content;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus,
+    .button:hover,
+    .button:focus {
+      opacity: 1;
+      outline: none;
+      border-color: rgba(215,194,138,0.7);
+      background: rgba(215,194,138,0.16);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 84px 8vw 44px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 86px);
+      margin: 0;
+      font-weight: normal;
+      letter-spacing: 1.5px;
+      line-height: 1.02;
+    }
+
+    .subtitle {
+      max-width: 900px;
+      margin: 24px auto 0;
+      font-size: clamp(19px, 2.2vw, 23px);
+      line-height: 1.6;
+      color: rgba(247,243,234,0.84);
+    }
+
+    .subtitle .en {
+      display: block;
+      margin-top: 12px;
+      color: rgba(247,243,234,0.68);
+      font-style: italic;
+    }
+
+    .main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 28px 82px;
+    }
+
+    .intro-panel {
+      border-radius: 34px;
+      background: rgba(255,255,255,0.095);
+      border: 1px solid rgba(215,194,138,0.26);
+      box-shadow: 0 28px 82px rgba(0,0,0,0.32);
+      padding: 40px;
+      margin-bottom: 38px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .intro-panel h2 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 4vw, 54px);
+      font-weight: normal;
+      line-height: 1.08;
+    }
+
+    .intro-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .intro-panel .en {
+      display: block;
+      margin-top: 10px;
+      color: var(--soft);
+      font-style: italic;
+    }
+
+    .distance-box {
+      display: grid;
+      gap: 12px;
+    }
+
+    .distance-item {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(7,17,31,0.38);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .distance-item strong {
+      display: block;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .distance-item span {
+      display: block;
+      color: rgba(247,243,234,0.75);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .category {
+      margin-top: 54px;
+    }
+
+    .category:first-of-type { margin-top: 0; }
+
+    .category-header {
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .category-kicker {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .category-title {
+      margin: 0;
+      font-size: clamp(32px, 4.2vw, 56px);
+      font-weight: normal;
+      line-height: 1.08;
+    }
+
+    .category-subtitle {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.58;
+    }
+
+    .category-subtitle .en {
+      display: block;
+      margin-top: 6px;
+      color: var(--soft);
+      font-style: italic;
+    }
+
+    .time-pill {
+      justify-self: end;
+      padding: 12px 17px;
+      border-radius: 999px;
+      background: rgba(215,194,138,0.13);
+      border: 1px solid rgba(215,194,138,0.34);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .services-grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .service-card {
+      border-radius: 30px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 24px 74px rgba(0,0,0,0.28);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .service-image {
+      min-height: 210px;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 56%),
+        #07111f;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 204px;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 20px 58px rgba(0,0,0,0.34);
+    }
+
+    .service-content {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .service-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .service-type {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .service-time {
+      color: rgba(247,243,234,0.62);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .service-title {
+      margin: 0 0 16px;
+      font-size: clamp(27px, 3vw, 38px);
+      font-weight: normal;
+      line-height: 1.08;
+    }
+
+    .services-grid.three .service-title {
+      font-size: clamp(25px, 2.6vw, 34px);
+    }
+
+    .service-text {
+      margin: 0 0 15px;
+      color: rgba(247,243,234,0.82);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .service-text.en {
+      color: var(--soft);
+      font-style: italic;
+      margin-bottom: 26px;
+    }
+
+    .service-actions {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .ghost-note {
+      color: rgba(247,243,234,0.50);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .upgrade-note {
+      margin-top: 58px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.075);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 34px;
+      box-shadow: 0 24px 74px rgba(0,0,0,0.22);
+    }
+
+    .upgrade-note h2 {
+      margin: 0 0 14px;
+      font-weight: normal;
+      font-size: clamp(29px, 3.8vw, 48px);
+    }
+
+    .upgrade-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .upgrade-note .en {
+      display: block;
+      margin-top: 8px;
+      color: var(--soft);
+      font-style: italic;
+    }
+
+    .bottom-nav {
+      text-align: center;
+      padding: 38px 20px 54px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 0 20px 42px;
+      color: rgba(247,243,234,0.55);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1100px) {
+      .services-grid.three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 960px) {
+      .topbar {
+        padding: 16px 22px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand {
+        font-size: 15px;
+        letter-spacing: 2px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .nav-link {
+        font-size: 14px;
+        padding: 9px 12px;
+      }
+
+      .hero {
+        padding: 58px 24px 30px;
+      }
+
+      .main {
+        padding: 26px 18px 58px;
+      }
+
+      .intro-panel,
+      .services-grid,
+      .services-grid.three,
+      .category-header {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-panel {
+        padding: 28px;
+        border-radius: 24px;
+      }
+
+      .time-pill {
+        justify-self: start;
+      }
+
+      .service-card {
+        border-radius: 24px;
+      }
+
+      .service-content {
+        padding: 26px;
+      }
+
+      .service-image {
+        min-height: 190px;
+      }
+
+      .service-image img {
+        height: 184px;
+      }
+
+      .service-topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .service-time {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">Thalassa Suites</div>
+    <nav class="nav-links" aria-label="Navigazione">
+      <a class="nav-link" href="home.html">← Home</a>
+      <a class="nav-link" href="mobile.html">Guida ospiti</a>
+      <a class="nav-link" href="gallery.html">Thalassa Gallery</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Curated local experiences / Esperienze locali selezionate</div>
+    <h1>Servizi · Services</h1>
+    <p class="subtitle">
+      Una selezione di esperienze, luoghi e indirizzi consigliati per vivere Porto Cesareo,
+      il mare, la natura e il territorio salentino.
+      <span class="en">
+        A curated selection of experiences, places and recommended addresses to enjoy Porto Cesareo,
+        the sea, nature and the Salento area.
+      </span>
+    </p>
+  </section>
+
+  <main class="main">
+
+    <section class="intro-panel">
+      <div>
+        <h2>Scopri il territorio</h2>
+        <p>
+          Dalle esperienze immediate vicino a Thalassa Suites fino alle mete culturali e naturalistiche
+          nei dintorni: questa pagina è pensata come guida viva, aggiornabile nel tempo con nuovi consigli,
+          link, immagini, mappe e contatti.
+          <span class="en">
+            From nearby experiences around Thalassa Suites to cultural and natural destinations in the area:
+            this page is designed as a living guide, ready to be expanded over time with new tips, links,
+            images, maps and contacts.
+          </span>
+        </p>
+      </div>
+
+      <div class="distance-box">
+        <div class="distance-item">
+          <strong>5–10 min</strong>
+          <span>Esperienze immediate / Nearby experiences</span>
+        </div>
+        <div class="distance-item">
+          <strong>10–20 min</strong>
+          <span>Natura e relax / Nature and relaxation</span>
+        </div>
+        <div class="distance-item">
+          <strong>20–30 min</strong>
+          <span>Entroterra e cultura / Inland experiences and culture</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="category-header">
+        <div>
+          <div class="category-kicker">Porto Cesareo</div>
+          <h2 class="category-title">Mare, outdoor e territorio</h2>
+          <p class="category-subtitle">
+            Ideali per attività immediate, senza lunghi spostamenti.
+            <span class="en">Ideal for quick experiences without long transfers.</span>
+          </p>
+        </div>
+        <div class="time-pill">5–10 min</div>
+      </div>
+
+      <div class="services-grid">
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-pescaturismo.jpg" alt="Pescaturismo Porto Cesareo">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Mare & Outdoor</div>
+              <div class="service-time">Porto Cesareo</div>
+            </div>
+            <h3 class="service-title">Pescaturismo</h3>
+            <p class="service-text">
+              Un’esperienza per vivere il mare da protagonista, scoprendo ritmi, paesaggi e tradizioni locali.
+            </p>
+            <p class="service-text en">
+              An experience to enjoy the sea from the inside, discovering local rhythms, landscapes and traditions.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-horse-riding.jpg" alt="Passeggiate a cavallo Maneggio Sette Nani">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Outdoor</div>
+              <div class="service-time">Porto Cesareo</div>
+            </div>
+            <h3 class="service-title">Passeggiate a cavallo</h3>
+            <p class="service-text">
+              Passeggiate a cavallo in Salento con Maneggio Sette Nani, per esplorare il territorio in modo lento e autentico.
+            </p>
+            <p class="service-text en">
+              Horse riding in Salento with Maneggio Sette Nani, to explore the area in a slow and authentic way.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-ceap.jpg" alt="CEAP Centro di Educazione Ambientale Porto Cesareo">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Esperienze locali</div>
+              <div class="service-time">Porto Cesareo</div>
+            </div>
+            <h3 class="service-title">CEAP</h3>
+            <p class="service-text">
+              Visita al Centro di Educazione Ambientale: un modo semplice per conoscere l’ecosistema locale.
+            </p>
+            <p class="service-text en">
+              A visit to the Environmental Education Centre: a simple way to discover the local ecosystem.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="category-header">
+        <div>
+          <div class="category-kicker">Food & Wine</div>
+          <h2 class="category-title">Indirizzi consigliati</h2>
+          <p class="category-subtitle">
+            Tre luoghi distinti per vino, sapori locali e momenti conviviali.
+            <span class="en">Three separate places for wine, local flavours and convivial moments.</span>
+          </p>
+        </div>
+        <div class="time-pill">Porto Cesareo</div>
+      </div>
+
+      <div class="services-grid three">
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-enoteca-sapori-arneo.jpg" alt="Enoteca Sapori d’Arneo Porto Cesareo">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Enoteca</div>
+              <div class="service-time">Food & Wine</div>
+            </div>
+            <h3 class="service-title">Enoteca Sapori d’Arneo</h3>
+            <p class="service-text">
+              Indirizzo consigliato per vini, prodotti del territorio e sapori locali.
+            </p>
+            <p class="service-text en">
+              A recommended address for wines, local products and regional flavours.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-la-putea.jpg" alt="La Putea di Ilaria Donateo Porto Cesareo">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Local food</div>
+              <div class="service-time">Food & Wine</div>
+            </div>
+            <h3 class="service-title">La Putea di Ilaria Donateo</h3>
+            <p class="service-text">
+              Un luogo dedicato ai sapori del territorio, ideale per scoprire prodotti e convivialità locale.
+            </p>
+            <p class="service-text en">
+              A place dedicated to local flavours, ideal for discovering regional products and conviviality.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-bar-mykonos.jpg" alt="Bar Mykonos Porto Cesareo">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Bar</div>
+              <div class="service-time">Porto Cesareo</div>
+            </div>
+            <h3 class="service-title">Bar Mykonos</h3>
+            <p class="service-text">
+              Indirizzo per una pausa, un aperitivo o un momento informale a Porto Cesareo.
+            </p>
+            <p class="service-text en">
+              A suggested address for a break, an aperitivo or an informal moment in Porto Cesareo.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="category-header">
+        <div>
+          <div class="category-kicker">Natura & Relax</div>
+          <h2 class="category-title">Dintorni e mezza giornata</h2>
+          <p class="category-subtitle">
+            Perfetto per chi desidera mare, natura, pineta e paesaggi più selvatici.
+            <span class="en">Perfect for guests looking for sea, nature, pine forest and wilder landscapes.</span>
+          </p>
+        </div>
+        <div class="time-pill">10–20 min</div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-porto-selvaggio.jpg" alt="Parco Naturale di Porto Selvaggio">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Nardò</div>
+              <div class="service-time">Mezza giornata</div>
+            </div>
+            <h3 class="service-title">Parco Naturale di Porto Selvaggio</h3>
+            <p class="service-text">
+              Trekking, mare e pineta in uno dei paesaggi naturali più suggestivi della zona.
+            </p>
+            <p class="service-text en">
+              Trekking, sea and pine forest in one of the most beautiful natural landscapes in the area.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="category-header">
+        <div>
+          <div class="category-kicker">Entroterra salentino</div>
+          <h2 class="category-title">Esperienze autentiche</h2>
+          <p class="category-subtitle">
+            Per scoprire produzioni locali, artigianalità e identità del territorio.
+            <span class="en">To discover local production, craftsmanship and the identity of the area.</span>
+          </p>
+        </div>
+        <div class="time-pill">20–30 min</div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-birra-salento.jpg" alt="Birrificio Birra Salento Leverano">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Leverano</div>
+              <div class="service-time">Visita & degustazione</div>
+            </div>
+            <h3 class="service-title">Birrificio Birra Salento</h3>
+            <p class="service-text">
+              Visita al birrificio con degustazioni e racconto della produzione artigianale.
+            </p>
+            <p class="service-text en">
+              Brewery visit with tastings and an introduction to local craft beer production.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="category-header">
+        <div>
+          <div class="category-kicker">Arte & Cultura</div>
+          <h2 class="category-title">Esperienze artistiche</h2>
+          <p class="category-subtitle">
+            Percorsi, progetti e luoghi culturali per arricchire il soggiorno con arte e territorio.
+            <span class="en">Projects, places and cultural routes to enrich your stay with art and local identity.</span>
+          </p>
+        </div>
+        <div class="time-pill">Cultura</div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-lac-o-le-mon.jpg" alt="Fondazione Lac o Le Mon">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Arte contemporanea</div>
+              <div class="service-time">Territorio</div>
+            </div>
+            <h3 class="service-title">Fondazione Lac o Le Mon</h3>
+            <p class="service-text">
+              Una realtà sperimentale dedicata alle arti e all’educazione autonoma.
+            </p>
+            <p class="service-text en">
+              An experimental house dedicated to the arts and self-led education.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-image">
+            <img src="images/services-campo-giganti.jpg" alt="Il Campo dei Giganti">
+          </div>
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-type">Land Art & Community</div>
+              <div class="service-time">Eventi / Mostre</div>
+            </div>
+            <h3 class="service-title">Il Campo dei Giganti</h3>
+            <p class="service-text">
+              Arte contemporanea, eventi, mostre e progetti tra paesaggio, comunità e territorio.
+            </p>
+            <p class="service-text en">
+              Contemporary art, events, exhibitions and projects between landscape, community and local identity.
+            </p>
+            <div class="service-actions">
+              <a class="button" href="#" target="_blank" rel="noopener">Apri link / Open link</a>
+              <span class="ghost-note">Inserire link reale.</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="upgrade-note">
+      <h2>Pagina aggiornabile</h2>
+      <p>
+        Questa sezione può essere ampliata con nuove schede, mappe Google, numeri WhatsApp,
+        link di prenotazione, consigli stagionali, ristoranti, spiagge e attività consigliate.
+        <span class="en">
+          This section can be expanded with new cards, Google Maps links, WhatsApp numbers,
+          booking links, seasonal tips, restaurants, beaches and recommended activities.
+        </span>
+      </p>
+    </section>
+
+  </main>
+
+  <div class="bottom-nav">
+    <a class="button" href="home.html">← Torna alla Home / Back to Home</a>
+  </div>
+
+  <footer>
+    Thalassa Suites — Servizi / Services<br>
+    Local experiences, nature, food & art
+  </footer>
+
+</body>
+</html>
 
