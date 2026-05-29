@@ -447,6 +447,19 @@
       display: block;
     }
 
+    .video-frame.has-video {
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-frame.has-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
     .play-icon {
       width: 78px;
       height: 78px;
@@ -731,56 +744,45 @@
     <h2 class="section-title">Video moments</h2>
 
     <div class="video-grid">
-      <article class="video-card">
-        <div class="video-frame">
-          <!--
-            Per usare un file video locale, sostituisci questo blocco con:
-            <video controls poster="images/san-cataldo-video-01-poster.jpg">
-              <source src="videos/san-cataldo-video-01.mp4" type="video/mp4">
-            </video>
 
-            Per YouTube/Vimeo, inserisci qui il codice iframe.
-          -->
-<video controls preload="metadata">
-  <source src="videos/san-cataldo-video-01.mp4" type="video/mp4">
-  Il tuo browser non supporta il video.
-</video>
+      <article class="video-card">
+        <div class="video-frame has-video">
+          <video controls playsinline preload="metadata">
+            <source src="https://cdn.jsdelivr.net/gh/alessiobarberoeditore-commits/thalassa-tv@main/videos/san-cataldo-video-01.mp4" type="video/mp4">
+            <source src="videos/san-cataldo-video-01.mp4" type="video/mp4">
+            Il tuo browser non supporta il video.
+          </video>
         </div>
+
         <div class="video-content">
           <h3>Video racconto / Video story</h3>
           <p>
-            Spazio riservato al primo video dell’evento.
+            Primo video dell’evento “San Cataldo andata e (forse) ritorno”.
             <br />
-            Reserved area for the first event video.
+            First video from the “San Cataldo andata e (forse) ritorno” event.
           </p>
         </div>
       </article>
 
       <article class="video-card">
-        <div class="video-frame">
-          <!--
-            Per usare un file video locale, sostituisci questo blocco con:
-            <video controls poster="images/san-cataldo-video-02-poster.jpg">
-              <source src="videos/san-cataldo-video-02.mp4" type="video/mp4">
-            </video>
-
-            Per YouTube/Vimeo, inserisci qui il codice iframe.
-          -->
-          <div>
-<video controls preload="metadata">
-  <source src="videos/san-cataldo-video-02.mp4" type="video/mp4">
-  Il tuo browser non supporta il video.
-</video>
+        <div class="video-frame has-video">
+          <video controls playsinline preload="metadata">
+            <source src="https://cdn.jsdelivr.net/gh/alessiobarberoeditore-commits/thalassa-tv@main/videos/san-cataldo-video-02.mp4" type="video/mp4">
+            <source src="videos/san-cataldo-video-02.mp4" type="video/mp4">
+            Il tuo browser non supporta il video.
+          </video>
         </div>
+
         <div class="video-content">
           <h3>Behind the event / Dietro l’evento</h3>
           <p>
-            Spazio riservato al secondo video dell’evento.
+            Secondo video dell’evento “San Cataldo andata e (forse) ritorno”.
             <br />
-            Reserved area for the second event video.
+            Second video from the “San Cataldo andata e (forse) ritorno” event.
           </p>
         </div>
       </article>
+
     </div>
   </section>
 
