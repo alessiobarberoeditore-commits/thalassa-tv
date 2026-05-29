@@ -75,20 +75,20 @@
       opacity:0;
       transform:scale(1.025);
       filter:saturate(1.08) contrast(1.06) brightness(1.02);
-      animation:slideFade 24s infinite;
+      animation:slideFade 21s infinite;
       z-index:1;
     }
 
     .slide:nth-child(1){background-image:url('images/thalassa-01.jpg');animation-delay:0s;}
-    .slide:nth-child(2){background-image:url('images/thalassa-02.jpg');animation-delay:8s;}
-    .slide:nth-child(3){background-image:url('images/thalassa-03.jpg');animation-delay:16s;}
+    .slide:nth-child(2){background-image:url('images/thalassa-02.jpg');animation-delay:7s;}
+    .slide:nth-child(3){background-image:url('images/thalassa-03.jpg');animation-delay:14s;}
 
     @keyframes slideFade{
       0%{opacity:0;transform:scale(1.025);}
-      8%{opacity:.86;transform:scale(1.03);}
-      30%{opacity:.86;transform:scale(1.055);}
-      42%{opacity:0;transform:scale(1.08);}
-      100%{opacity:0;transform:scale(1.08);}
+      9%{opacity:.84;transform:scale(1.03);}
+      31%{opacity:.84;transform:scale(1.052);}
+      43%{opacity:0;transform:scale(1.075);}
+      100%{opacity:0;transform:scale(1.075);}
     }
 
     .screen::after{
@@ -445,6 +445,204 @@
       background:rgba(168,199,223,.72);
     }
 
+
+    /* FIT TV — compatta la Home e impedisce tagli superiori/inferiori */
+    .ui{
+      padding:28px 46px 22px;
+    }
+
+    .topbar{
+      font-size:13px;
+      letter-spacing:.14em;
+    }
+
+    .center{
+      gap:42px;
+    }
+
+    h1{
+      font-size:clamp(54px, 6vw, 76px);
+    }
+
+    .lead{
+      font-size:19px;
+      line-height:1.36;
+    }
+
+    .lead.small{
+      font-size:16px;
+    }
+
+    .panel{
+      max-width:620px;
+      padding:18px;
+      border-radius:30px;
+    }
+
+    .menu-title{
+      padding:6px 8px 12px;
+      font-size:18px;
+    }
+
+    .remote-hint{
+      font-size:11px;
+    }
+
+    .menu{
+      gap:7px;
+      max-height:none;
+    }
+
+    .item{
+      min-height:56px;
+      padding:9px 14px;
+      border-radius:21px;
+      grid-template-columns:40px 1fr auto;
+      gap:12px;
+    }
+
+    .icon{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      font-size:18px;
+    }
+
+    .item h2{
+      font-size:17px;
+      margin-bottom:1px;
+    }
+
+    .item p{
+      font-size:11.8px;
+      line-height:1.26;
+    }
+
+    .chip{
+      padding:7px 11px;
+      font-size:11.5px;
+    }
+
+    .gallery-feature{
+      min-height:96px;
+      grid-template-columns:104px minmax(0,1fr) auto;
+      gap:16px;
+      padding:12px 14px;
+      border-radius:24px;
+    }
+
+    .gallery-thumb{
+      width:104px;
+      height:68px;
+      border-radius:16px;
+    }
+
+    .gallery-label{
+      font-size:10px;
+      margin-bottom:5px;
+    }
+
+    .gallery-text h2{
+      font-size:22px;
+      margin-bottom:5px;
+    }
+
+    .gallery-text p{
+      font-size:12.5px;
+      line-height:1.27;
+    }
+
+    .gallery-chip{
+      padding:9px 14px;
+      font-size:11.5px;
+    }
+
+    .qr-section{
+      grid-template-columns:104px 1fr;
+      gap:16px;
+      padding:12px;
+      border-radius:24px;
+    }
+
+    .qr{
+      width:104px;
+      height:104px;
+      border-radius:18px;
+    }
+
+    .qr-copy h3{
+      font-size:19px;
+    }
+
+    .qr-copy p{
+      font-size:12.2px;
+      line-height:1.35;
+    }
+
+    .bottom{
+      font-size:12.5px;
+    }
+
+    @media (max-height: 840px){
+      .ui{
+        padding:18px 36px 16px;
+      }
+
+      .panel{
+        padding:14px;
+      }
+
+      .menu{
+        gap:6px;
+      }
+
+      .item{
+        min-height:50px;
+        padding:7px 12px;
+      }
+
+      .icon{
+        width:36px;
+        height:36px;
+      }
+
+      .item h2{
+        font-size:16px;
+      }
+
+      .item p{
+        font-size:11px;
+      }
+
+      .gallery-feature{
+        min-height:86px;
+        padding:10px 12px;
+      }
+
+      .gallery-thumb{
+        width:92px;
+        height:60px;
+      }
+
+      .qr-section{
+        grid-template-columns:88px 1fr;
+        padding:10px;
+      }
+
+      .qr{
+        width:88px;
+        height:88px;
+      }
+
+      .qr-copy h3{
+        font-size:18px;
+      }
+
+      .qr-copy p{
+        font-size:11.6px;
+      }
+    }
+
     @media(max-width:900px){
       body{overflow:auto;}
       body::after{display:none;}
@@ -453,7 +651,7 @@
       .screen::after{display:block;position:fixed;}
       .ui{height:auto;padding:28px 18px;display:block;}
       .topbar{font-size:12px;letter-spacing:.12em;}
-      .center{display:block;margin-top:70px;}
+      .center{display:block;margin-top:24px;}
       h1{font-size:52px;}
       .lead{font-size:18px;}
       .lead.small{font-size:16px;}
