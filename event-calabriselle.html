@@ -438,6 +438,19 @@
       display: block;
     }
 
+    .video-frame.has-video {
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-frame.has-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
     .play-icon {
       width: 78px;
       height: 78px;
@@ -695,64 +708,52 @@
     <h2 class="section-title">Video moments</h2>
 
     <p class="edit-note">
-      Due riquadri video predisposti. Puoi sostituire il contenuto con embed Instagram,
-      iframe YouTube/Vimeo, oppure lasciare il bottone verso Instagram.
+      Due riquadri video predisposti per file MP4 locali.
+      Carica i video nella cartella <strong>videos</strong> con i nomi indicati sotto.
+      <br />
+      Two video areas prepared for local MP4 files. Upload the videos to the <strong>videos</strong> folder with the filenames shown below.
     </p>
 
     <div class="video-grid">
+
       <article class="video-card">
-        <div class="video-frame">
-          <!--
-            EDITA QUI — VIDEO 01
-            Opzione Instagram link: cambia solo href del bottone sotto.
-            Opzione embed Instagram: sostituisci questo div con il codice Incorpora.
-            Opzione YouTube/Vimeo: usa un iframe.
-          -->
-          <div>
-            <div class="play-icon">▶</div>
-            Video 01
-          </div>
+        <div class="video-frame has-video">
+          <video controls playsinline preload="metadata">
+            <source src="videos/calabriselle-video-01.mp4" type="video/mp4">
+            <source src="https://cdn.jsdelivr.net/gh/alessiobarberoeditore-commits/thalassa-tv@main/videos/calabriselle-video-01.mp4" type="video/mp4">
+            Il tuo browser non supporta il video.
+          </video>
         </div>
+
         <div class="video-content">
           <h3>Video racconto / Video story</h3>
           <p>
-            Spazio riservato al primo video dell’evento.
+            Primo video dell’evento “Calabriselle”.
             <br />
-            Reserved area for the first event video.
+            First video from the “Calabriselle” event.
           </p>
-          <!-- EDITA QUI: link Instagram reale -->
-          <a class="button" href="#" target="_blank" rel="noopener">
-            Guarda su Instagram / Watch on Instagram
-          </a>
         </div>
       </article>
 
       <article class="video-card">
-        <div class="video-frame">
-          <!--
-            EDITA QUI — VIDEO 02
-            Opzione Instagram link: cambia solo href del bottone sotto.
-            Opzione embed Instagram: sostituisci questo div con il codice Incorpora.
-            Opzione YouTube/Vimeo: usa un iframe.
-          -->
-          <div>
-            <div class="play-icon">▶</div>
-            Video 02
-          </div>
+        <div class="video-frame has-video">
+          <video controls playsinline preload="metadata">
+            <source src="videos/calabriselle-video-02.mp4" type="video/mp4">
+            <source src="https://cdn.jsdelivr.net/gh/alessiobarberoeditore-commits/thalassa-tv@main/videos/calabriselle-video-02.mp4" type="video/mp4">
+            Il tuo browser non supporta il video.
+          </video>
         </div>
+
         <div class="video-content">
           <h3>Behind the event / Dietro l’evento</h3>
           <p>
-            Spazio riservato al secondo video dell’evento.
+            Secondo video dell’evento “Calabriselle”.
             <br />
-            Reserved area for the second event video.
+            Second video from the “Calabriselle” event.
           </p>
-          <!-- EDITA QUI: link Instagram reale -->
-          <a class="button" href="#" target="_blank" rel="noopener">
-            Guarda su Instagram / Watch on Instagram
-          </a>
         </div>
       </article>
+
     </div>
   </section>
 
