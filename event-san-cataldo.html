@@ -391,6 +391,7 @@
     .dots {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 10px;
       margin-top: 16px;
     }
@@ -709,31 +710,47 @@
         <div class="slide active">
           <img src="images/san-cataldo-01.jpg" alt="San Cataldo immagine 1" />
         </div>
+
         <div class="slide">
           <img src="images/san-cataldo-02.jpg" alt="San Cataldo immagine 2" />
         </div>
+
         <div class="slide">
           <img src="images/san-cataldo-03.jpg" alt="San Cataldo immagine 3" />
         </div>
+
         <div class="slide">
           <img src="images/san-cataldo-04.jpg" alt="San Cataldo immagine 4" />
         </div>
+
         <div class="slide">
           <img src="images/san-cataldo-05.jpg" alt="San Cataldo immagine 5" />
         </div>
-         <img src="images/san-cataldo-06.jpg" alt="San Cataldo immagine 6" />
+
+        <div class="slide">
+          <img src="images/san-cataldo-06.jpg" alt="San Cataldo immagine 6" />
         </div>
-        <img src="images/san-cataldo-07.jpg" alt="San Cataldo immagine 7" />
+
+        <div class="slide">
+          <img src="images/san-cataldo-07.jpg" alt="San Cataldo immagine 7" />
         </div>
-        <img src="images/san-cataldo-08.jpg" alt="San Cataldo immagine 8" />
+
+        <div class="slide">
+          <img src="images/san-cataldo-08.jpg" alt="San Cataldo immagine 8" />
         </div>
-        <img src="images/san-cataldo-09.jpg" alt="San Cataldo immagine 9" />
+
+        <div class="slide">
+          <img src="images/san-cataldo-09.jpg" alt="San Cataldo immagine 9" />
         </div>
-        <img src="images/san-cataldo-10.jpg" alt="San Cataldo immagine 10" />
+
+        <div class="slide">
+          <img src="images/san-cataldo-10.jpg" alt="San Cataldo immagine 10" />
         </div>
-        <img src="images/san-cataldo-11.jpg" alt="San Cataldo immagine 11" />
+
+        <div class="slide">
+          <img src="images/san-cataldo-11.jpg" alt="San Cataldo immagine 11" />
         </div>
-     
+
         <button class="arrow right" onclick="nextSlide()" aria-label="Immagine successiva">›</button>
       </div>
 
@@ -753,7 +770,6 @@
         <button class="dot" onclick="showSlide(8)" aria-label="Vai all'immagine 9"></button>
         <button class="dot" onclick="showSlide(9)" aria-label="Vai all'immagine 10"></button>
         <button class="dot" onclick="showSlide(10)" aria-label="Vai all'immagine 11"></button>
-      
       </div>
     </div>
   </section>
@@ -822,7 +838,13 @@
       "Dettagli e atmosfere / Details and atmosphere",
       "Luoghi, memoria e ritorno / Places, memory and return",
       "Tracce visive / Visual traces",
-      "Mediterranean light / Luce mediterranea"
+      "Mediterranean light / Luce mediterranea",
+      "Preparazione dell’opera / Artwork preparation",
+      "Backstage dell’evento / Event backstage",
+      "Segni, pareti e visioni / Signs, walls and visions",
+      "Presenze e prospettive / Presences and perspectives",
+      "Dettagli installativi / Installation details",
+      "Archivio visivo / Visual archive"
     ];
 
     const caption = document.getElementById("carouselCaption");
