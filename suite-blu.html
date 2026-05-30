@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Suite Blu | Thalassa Suites</title>
+
+  <!--
+    THALASSA SUITES — SUITE BLU
+    Versione con carosello da 15 immagini sotto il testo principale.
+
+    File da caricare su GitHub:
+    suite-blu.html
+
+    Immagini richieste in /images:
+    images/suite-blu-01.jpg ... images/suite-blu-15.jpg
+
+    QR predisposto:
+    images/qr-suite-blu.png
+  -->
+
   <style>
     :root{
       --ink:#020817;
@@ -23,15 +38,19 @@
 
     *{box-sizing:border-box;}
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     html,body{
       margin:0;
       width:100%;
-      height:100%;
-      overflow:hidden;
+      min-height:100%;
       background:var(--ink);
       color:var(--white);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
       letter-spacing:-.02em;
+      overflow-x:hidden;
     }
 
     a{color:inherit;text-decoration:none;}
@@ -45,6 +64,7 @@
         radial-gradient(circle at 82% 22%, rgba(37,99,235,.22), transparent 30%),
         linear-gradient(135deg, #020817 0%, #06172d 42%, #0b2746 70%, #020817 100%);
       z-index:0;
+      pointer-events:none;
     }
 
     body::after{
@@ -52,43 +72,45 @@
       position:fixed;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(2,8,23,.45) 0%, rgba(2,8,23,.18) 48%, rgba(2,8,23,.55) 100%),
-        linear-gradient(180deg, rgba(2,8,23,.05), rgba(2,8,23,.38));
+        linear-gradient(90deg, rgba(2,8,23,.48) 0%, rgba(2,8,23,.18) 48%, rgba(2,8,23,.58) 100%),
+        linear-gradient(180deg, rgba(2,8,23,.05), rgba(2,8,23,.40));
       z-index:2;
       pointer-events:none;
     }
 
     .screen{
       position:relative;
-      width:100vw;
-      height:100vh;
+      min-height:100vh;
       background:transparent;
     }
 
     .bg{
-      position:absolute;
+      position:fixed;
       inset:0;
       background-image:url('images/suite-blu-01.jpg');
       background-size:cover;
       background-position:center;
-      filter:saturate(1.05) contrast(1.05) brightness(1);
-      opacity:1;
+      filter:saturate(1.05) contrast(1.05) brightness(.95);
+      opacity:.88;
       transform:scale(1.035);
       z-index:1;
+      pointer-events:none;
     }
 
     .ui{
       position:relative;
       z-index:3;
-      height:100vh;
+      min-height:100vh;
       display:grid;
       grid-template-columns:280px 1fr;
     }
 
     .sidebar{
+      position:sticky;
+      top:0;
       height:100vh;
       padding:36px 22px;
-      background:rgba(2,8,23,.50);
+      background:rgba(2,8,23,.54);
       border-right:1px solid var(--line);
       backdrop-filter:blur(26px);
       display:grid;
@@ -161,10 +183,10 @@
     }
 
     .content{
-      height:100vh;
-      display:grid;
-      grid-template-rows:auto 1fr auto;
+      min-height:100vh;
       padding:42px 58px 34px;
+      display:flex;
+      flex-direction:column;
       gap:28px;
     }
 
@@ -179,10 +201,16 @@
     }
 
     .main{
+      flex:1;
       display:grid;
-      grid-template-columns:1fr 420px;
-      align-items:center;
+      grid-template-columns:minmax(0,1fr) 420px;
+      align-items:start;
       gap:50px;
+      padding-top:64px;
+    }
+
+    .copy{
+      max-width:920px;
     }
 
     .eyebrow{
@@ -195,7 +223,7 @@
 
     h1{
       margin:0;
-      font-size:86px;
+      font-size:clamp(58px, 6.2vw, 86px);
       line-height:.92;
       font-weight:520;
       letter-spacing:-.075em;
@@ -229,7 +257,9 @@
     }
 
     .panel{
-      background:linear-gradient(180deg, rgba(8,25,48,.62), rgba(3,12,26,.52));
+      position:sticky;
+      top:42px;
+      background:linear-gradient(180deg, rgba(8,25,48,.68), rgba(3,12,26,.58));
       border:1px solid var(--line);
       border-radius:34px;
       padding:24px;
@@ -301,7 +331,130 @@
 
     .cta p{margin:0;color:var(--soft);font-size:14px;line-height:1.42;}
 
+    .carousel-section{
+      margin-top:54px;
+      max-width:960px;
+    }
+
+    .carousel-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:end;
+      margin-bottom:18px;
+    }
+
+    .carousel-head h2{
+      margin:0;
+      font-size:32px;
+      line-height:1.1;
+      font-weight:520;
+      letter-spacing:-.05em;
+    }
+
+    .carousel-head span{
+      color:var(--blue);
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:11px;
+      white-space:nowrap;
+    }
+
+    .suite-carousel{
+      position:relative;
+      min-height:500px;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(220,232,244,.16);
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.055), transparent 55%),
+        rgba(2,8,23,.68);
+      box-shadow:0 32px 90px rgba(0,0,0,.36);
+    }
+
+    .suite-slide{
+      display:none;
+      min-height:500px;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+    }
+
+    .suite-slide.active{
+      display:flex;
+    }
+
+    .suite-slide img{
+      max-width:100%;
+      max-height:456px;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      border-radius:22px;
+      box-shadow:0 24px 74px rgba(0,0,0,.42);
+      background:rgba(255,255,255,.035);
+    }
+
+    .suite-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:58px;
+      height:58px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.34);
+      background:rgba(2,8,23,.62);
+      color:var(--white);
+      font-size:38px;
+      line-height:1;
+      cursor:pointer;
+      z-index:4;
+      transition:all .22s ease;
+    }
+
+    .suite-arrow:hover,
+    .suite-arrow:focus{
+      outline:none;
+      background:rgba(125,211,252,.22);
+      border-color:rgba(125,211,252,.70);
+    }
+
+    .suite-arrow.left{left:18px;}
+    .suite-arrow.right{right:18px;}
+
+    .suite-caption{
+      padding:16px 8px 0;
+      text-align:center;
+      color:rgba(248,250,252,.68);
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    .suite-dots{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-top:14px;
+    }
+
+    .suite-dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.36);
+      background:rgba(255,255,255,.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .suite-dot.active{
+      background:var(--blue);
+      border-color:var(--blue);
+    }
+
     .bottom{
+      margin-top:46px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -319,26 +472,39 @@
       vertical-align:middle;
     }
 
-    @media(max-width:900px){
-      html,body{height:auto;overflow:auto;}
-      body::after{display:none;}
-      .screen{height:auto;min-height:100vh;}
-      .bg{display:none;}
-      .ui{display:block;height:auto;}
-      .sidebar{height:auto;display:block;padding:24px 18px;}
+    @media(max-width:1200px){
+      .ui{display:block;}
+      .sidebar{
+        position:relative;
+        height:auto;
+        padding:24px 18px;
+        display:block;
+        border-right:0;
+        border-bottom:1px solid var(--line);
+      }
+      .nav{grid-template-columns:repeat(3, minmax(0,1fr));}
+      .remote{display:none;}
+      .content{min-height:auto;padding:34px 24px 40px;}
+      .main{grid-template-columns:1fr;padding-top:28px;}
+      .panel{position:relative;top:auto;}
+      .carousel-section{max-width:100%;}
+    }
+
+    @media(max-width:760px){
       .nav{grid-template-columns:1fr 1fr;}
-      .content{height:auto;display:block;padding:34px 18px;}
-      .topline{font-size:12px;margin-bottom:52px;}
-      .main{display:block;}
+      .topline{align-items:flex-start;flex-direction:column;font-size:12px;}
       h1{font-size:54px;}
       .intro{font-size:18px;}
-      .panel{margin-top:32px;padding:18px;border-radius:28px;}
       .cta{grid-template-columns:1fr;text-align:center;}
       .qr{margin:0 auto;}
-      .bottom{display:block;line-height:1.7;margin-top:30px;}
+      .suite-carousel,.suite-slide{min-height:360px;}
+      .suite-slide img{max-height:318px;}
+      .suite-arrow{width:48px;height:48px;font-size:30px;}
+      .bottom{display:block;line-height:1.7;}
     }
   </style>
 </head>
+
 <body>
   <main class="screen">
     <div class="bg"></div>
@@ -355,7 +521,7 @@
           <a href="mobile.html#wifi">Wi‑Fi</a>
           <a href="mobile.html#checkout">Check‑out</a>
           <a href="mobile.html#rules">House Rules</a>
-          <a href="mobile.html#services">Services</a>
+          <a href="services.html">Services</a>
           <a href="mobile.html">Guest Guide</a>
         </nav>
 
@@ -369,12 +535,96 @@
         </header>
 
         <section class="main">
-          <article>
+          <article class="copy">
             <div class="eyebrow">Suite Blu</div>
             <h1>La stanza della<br>memoria profonda.</h1>
             <p class="intro">La Suite Blu è un luogo che custodisce, come fa il mare con le storie che non finiscono. È lo spazio del ricordo e della presenza, dove l’acqua diventa memoria viva.</p>
             <p class="intro en">Suite Blu is a place that preserves, as the sea does with stories that never truly end. It is a space of memory and presence, where water becomes living memory.</p>
             <div class="quote">Il blu non è solo colore: è custode interiore, eco di voci amate, spazio sospeso tra ciò che si è salvato e ciò che si è perso.</div>
+
+            <section class="carousel-section" aria-label="Carosello immagini Suite Blu">
+              <div class="carousel-head">
+                <div>
+                  <div class="eyebrow">Visual gallery</div>
+                  <h2>Immagini della Suite</h2>
+                </div>
+                <span>15 immagini</span>
+              </div>
+
+              <div class="suite-carousel">
+                <button class="suite-arrow left" onclick="prevSuiteSlide()" aria-label="Immagine precedente">‹</button>
+
+            <div class="suite-slide active">
+              <img src="images/suite-blu-01.jpg" alt="Suite Blu immagine 1" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-02.jpg" alt="Suite Blu immagine 2" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-03.jpg" alt="Suite Blu immagine 3" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-04.jpg" alt="Suite Blu immagine 4" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-05.jpg" alt="Suite Blu immagine 5" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-06.jpg" alt="Suite Blu immagine 6" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-07.jpg" alt="Suite Blu immagine 7" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-08.jpg" alt="Suite Blu immagine 8" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-09.jpg" alt="Suite Blu immagine 9" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-10.jpg" alt="Suite Blu immagine 10" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-11.jpg" alt="Suite Blu immagine 11" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-12.jpg" alt="Suite Blu immagine 12" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-13.jpg" alt="Suite Blu immagine 13" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-14.jpg" alt="Suite Blu immagine 14" />
+            </div>
+            <div class="suite-slide">
+              <img src="images/suite-blu-15.jpg" alt="Suite Blu immagine 15" />
+            </div>
+
+                <button class="suite-arrow right" onclick="nextSuiteSlide()" aria-label="Immagine successiva">›</button>
+              </div>
+
+              <div class="suite-caption" id="suiteCaption">
+                Suite Blu · Atmosfere e dettagli
+              </div>
+
+              <div class="suite-dots" aria-label="Indicatori carosello Suite Blu">
+            <button class="suite-dot active" onclick="showSuiteSlide(0)" aria-label="Vai all'immagine 1"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(1)" aria-label="Vai all'immagine 2"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(2)" aria-label="Vai all'immagine 3"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(3)" aria-label="Vai all'immagine 4"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(4)" aria-label="Vai all'immagine 5"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(5)" aria-label="Vai all'immagine 6"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(6)" aria-label="Vai all'immagine 7"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(7)" aria-label="Vai all'immagine 8"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(8)" aria-label="Vai all'immagine 9"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(9)" aria-label="Vai all'immagine 10"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(10)" aria-label="Vai all'immagine 11"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(11)" aria-label="Vai all'immagine 12"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(12)" aria-label="Vai all'immagine 13"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(13)" aria-label="Vai all'immagine 14"></button>
+            <button class="suite-dot" onclick="showSuiteSlide(14)" aria-label="Vai all'immagine 15"></button>
+              </div>
+            </section>
           </article>
 
           <aside class="panel">
@@ -405,7 +655,48 @@
   </main>
 
   <script>
-    const focusable = Array.from(document.querySelectorAll('a'));
+    const focusable = Array.from(document.querySelectorAll('a, button'));
+    const suiteSlides = document.querySelectorAll(".suite-slide");
+    const suiteDots = document.querySelectorAll(".suite-dot");
+    const suiteCaptions = [
+      "Suite Blu · Atmosfere e dettagli",
+      "Memoria del mare / Memory of the sea",
+      "Luce, acqua e presenza / Light, water and presence",
+      "Dettagli della camera / Room details",
+      "Blu profondo / Deep blue",
+      "Texture e quiete / Textures and quietness",
+      "Spazio del ricordo / Space of memory",
+      "Angoli intimi / Quiet corners",
+      "Riflessi mediterranei / Mediterranean reflections",
+      "Camera e atmosfera / Room atmosphere",
+      "Dettagli d’arredo / Design details",
+      "Luce naturale / Natural light",
+      "Presenza e silenzio / Presence and silence",
+      "Esperienza Suite Blu / Suite Blu experience",
+      "Archivio visivo Suite Blu / Visual archive"
+    ];
+
+    const suiteCaption = document.getElementById("suiteCaption");
+    let currentSuiteSlide = 0;
+
+    function showSuiteSlide(index) {
+      suiteSlides[currentSuiteSlide].classList.remove("active");
+      suiteDots[currentSuiteSlide].classList.remove("active");
+
+      currentSuiteSlide = (index + suiteSlides.length) % suiteSlides.length;
+
+      suiteSlides[currentSuiteSlide].classList.add("active");
+      suiteDots[currentSuiteSlide].classList.add("active");
+      suiteCaption.textContent = suiteCaptions[currentSuiteSlide] || "Suite Blu";
+    }
+
+    function nextSuiteSlide() {
+      showSuiteSlide(currentSuiteSlide + 1);
+    }
+
+    function prevSuiteSlide() {
+      showSuiteSlide(currentSuiteSlide - 1);
+    }
 
     window.addEventListener('load', () => {
       const active = document.querySelector('.nav a.active') || focusable[0];
@@ -416,18 +707,26 @@
       const keys = ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '];
       if(!keys.includes(event.key)) return;
 
+      if(event.key === 'ArrowRight') {
+        nextSuiteSlide();
+      }
+
+      if(event.key === 'ArrowLeft') {
+        prevSuiteSlide();
+      }
+
       const current = focusable.indexOf(document.activeElement);
       if(current === -1){
         focusable[0].focus();
         return;
       }
 
-      if(event.key === 'ArrowDown' || event.key === 'ArrowRight'){
+      if(event.key === 'ArrowDown'){
         event.preventDefault();
         focusable[(current + 1) % focusable.length].focus();
       }
 
-      if(event.key === 'ArrowUp' || event.key === 'ArrowLeft'){
+      if(event.key === 'ArrowUp'){
         event.preventDefault();
         focusable[(current - 1 + focusable.length) % focusable.length].focus();
       }
@@ -437,6 +736,8 @@
         document.activeElement.click();
       }
     });
+
+    setInterval(nextSuiteSlide, 6500);
   </script>
 </body>
 </html>
