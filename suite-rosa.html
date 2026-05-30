@@ -26,8 +26,8 @@
     html,body{
       margin:0;
       width:100%;
-      height:100%;
-      overflow:hidden;
+      min-height:100%;
+      overflow-x:hidden;
       background:var(--ink);
       color:var(--white);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
@@ -61,18 +61,18 @@
     .screen{
       position:relative;
       width:100vw;
-      height:100vh;
+      min-height:100vh;
       background:transparent;
     }
 
     .bg{
-      position:absolute;
+      position:fixed;
       inset:0;
       background-image:url('images/suite-rosa-01.jpg');
       background-size:cover;
       background-position:center;
       filter:saturate(1.05) contrast(1.05) brightness(1);
-      opacity:1;
+      opacity:.88;
       transform:scale(1.035);
       z-index:1;
     }
@@ -80,7 +80,7 @@
     .ui{
       position:relative;
       z-index:3;
-      height:100vh;
+      min-height:100vh;
       display:grid;
       grid-template-columns:280px 1fr;
     }
@@ -161,9 +161,9 @@
     }
 
     .content{
-      height:100vh;
-      display:grid;
-      grid-template-rows:auto 1fr auto;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
       padding:42px 58px 34px;
       gap:28px;
     }
@@ -179,10 +179,16 @@
     }
 
     .main{
+      flex:1;
       display:grid;
-      grid-template-columns:1fr 420px;
-      align-items:center;
+      grid-template-columns:minmax(0,1fr) 420px;
+      align-items:start;
       gap:50px;
+      padding-top:64px;
+    }
+
+    .copy{
+      max-width:920px;
     }
 
     .eyebrow{
@@ -229,6 +235,8 @@
     }
 
     .panel{
+      position:sticky;
+      top:42px;
       background:linear-gradient(180deg, rgba(8,25,48,.62), rgba(3,12,26,.52));
       border:1px solid var(--line);
       border-radius:34px;
@@ -301,6 +309,129 @@
 
     .cta p{margin:0;color:var(--soft);font-size:14px;line-height:1.42;}
 
+
+    .carousel-section{
+      margin-top:54px;
+      max-width:960px;
+    }
+
+    .carousel-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:end;
+      margin-bottom:18px;
+    }
+
+    .carousel-head h2{
+      margin:0;
+      font-size:32px;
+      line-height:1.1;
+      font-weight:520;
+      letter-spacing:-.05em;
+    }
+
+    .carousel-head span{
+      color:var(--rose);
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:11px;
+      white-space:nowrap;
+    }
+
+    .suite-carousel{
+      position:relative;
+      min-height:500px;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(220,232,244,.16);
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.055), transparent 55%),
+        rgba(2,8,23,.68);
+      box-shadow:0 32px 90px rgba(0,0,0,.36);
+    }
+
+    .suite-slide{
+      display:none;
+      min-height:500px;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+    }
+
+    .suite-slide.active{
+      display:flex;
+    }
+
+    .suite-slide img{
+      max-width:100%;
+      max-height:456px;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      border-radius:22px;
+      box-shadow:0 24px 74px rgba(0,0,0,.42);
+      background:rgba(255,255,255,.035);
+    }
+
+    .suite-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:58px;
+      height:58px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.34);
+      background:rgba(2,8,23,.62);
+      color:var(--white);
+      font-size:38px;
+      line-height:1;
+      cursor:pointer;
+      z-index:4;
+      transition:all .22s ease;
+    }
+
+    .suite-arrow:hover,
+    .suite-arrow:focus{
+      outline:none;
+      background:rgba(244,167,185,.22);
+      border-color:rgba(244,167,185,.70);
+    }
+
+    .suite-arrow.left{left:18px;}
+    .suite-arrow.right{right:18px;}
+
+    .suite-caption{
+      padding:16px 8px 0;
+      text-align:center;
+      color:rgba(248,250,252,.68);
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    .suite-dots{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-top:14px;
+    }
+
+    .suite-dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.36);
+      background:rgba(255,255,255,.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .suite-dot.active{
+      background:var(--rose);
+      border-color:var(--rose);
+    }
+
     .bottom{
       display:flex;
       align-items:center;
@@ -329,12 +460,17 @@
       .nav{grid-template-columns:1fr 1fr;}
       .content{height:auto;display:block;padding:34px 18px;}
       .topline{font-size:12px;margin-bottom:52px;}
-      .main{display:block;}
+      .main{display:block;padding-top:28px;}
+      .carousel-section{max-width:100%;}
+      .panel{position:relative;top:auto;}
       h1{font-size:54px;}
       .intro{font-size:18px;}
       .panel{margin-top:32px;padding:18px;border-radius:28px;}
       .cta{grid-template-columns:1fr;text-align:center;}
       .qr{margin:0 auto;}
+      .suite-carousel,.suite-slide{min-height:360px;}
+      .suite-slide img{max-height:318px;}
+      .suite-arrow{width:48px;height:48px;font-size:30px;}
       .bottom{display:block;line-height:1.7;margin-top:30px;}
     }
   </style>
@@ -369,12 +505,76 @@
         </header>
 
         <section class="main">
-          <article>
+          <article class="copy">
             <div class="eyebrow">Suite Rosa</div>
             <h1>La stanza della<br>luce gentile.</h1>
             <p class="intro">La Suite Rosa è una carezza di luce, un’eco di memorie delicate posata sulla soglia del mare.</p>
             <p class="intro en">Suite Rosa is a gentle caress of light, an echo of delicate memories resting at the edge of the sea.</p>
             <div class="quote">Il rosa non è solo colore: è un’emozione che si distende, la calma prima del giorno, una bellezza che non grida, ma sussurra.</div>
+
+            <section class="carousel-section" aria-label="Carosello immagini Suite Rosa">
+              <div class="carousel-head">
+                <div>
+                  <div class="eyebrow">Visual gallery</div>
+                  <h2>Immagini della Suite</h2>
+                </div>
+                <span>10 immagini</span>
+              </div>
+
+              <div class="suite-carousel">
+                <button class="suite-arrow left" onclick="prevSuiteSlide()" aria-label="Immagine precedente">‹</button>
+
+              <div class="suite-slide active">
+                <img src="images/suite-rosa-01.jpg" alt="Suite Rosa immagine 1" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-02.jpg" alt="Suite Rosa immagine 2" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-03.jpg" alt="Suite Rosa immagine 3" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-04.jpg" alt="Suite Rosa immagine 4" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-05.jpg" alt="Suite Rosa immagine 5" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-06.jpg" alt="Suite Rosa immagine 6" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-07.jpg" alt="Suite Rosa immagine 7" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-08.jpg" alt="Suite Rosa immagine 8" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-09.jpg" alt="Suite Rosa immagine 9" />
+              </div>
+              <div class="suite-slide">
+                <img src="images/suite-rosa-10.jpg" alt="Suite Rosa immagine 10" />
+              </div>
+
+                <button class="suite-arrow right" onclick="nextSuiteSlide()" aria-label="Immagine successiva">›</button>
+              </div>
+
+              <div class="suite-caption" id="suiteCaption">
+                Suite Rosa · Atmosfere e dettagli
+              </div>
+
+              <div class="suite-dots" aria-label="Indicatori carosello Suite Rosa">
+              <button class="suite-dot active" onclick="showSuiteSlide(0)" aria-label="Vai all'immagine 1"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(1)" aria-label="Vai all'immagine 2"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(2)" aria-label="Vai all'immagine 3"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(3)" aria-label="Vai all'immagine 4"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(4)" aria-label="Vai all'immagine 5"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(5)" aria-label="Vai all'immagine 6"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(6)" aria-label="Vai all'immagine 7"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(7)" aria-label="Vai all'immagine 8"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(8)" aria-label="Vai all'immagine 9"></button>
+              <button class="suite-dot" onclick="showSuiteSlide(9)" aria-label="Vai all'immagine 10"></button>
+              </div>
+            </section>
           </article>
 
           <aside class="panel">
@@ -405,7 +605,43 @@
   </main>
 
   <script>
-    const focusable = Array.from(document.querySelectorAll('a'));
+    const focusable = Array.from(document.querySelectorAll('a, button'));
+    const suiteSlides = document.querySelectorAll(".suite-slide");
+    const suiteDots = document.querySelectorAll(".suite-dot");
+    const suiteCaptions = [
+      "Suite Rosa · Atmosfere e dettagli",
+      "Luce gentile / Gentle light",
+      "Memorie delicate / Delicate memories",
+      "Dettagli della camera / Room details",
+      "Rosa, quiete e mare / Pink, quietness and sea",
+      "Rifugio sensoriale / Sensory refuge",
+      "Texture e morbidezza / Textures and softness",
+      "Design accogliente / Welcoming design",
+      "Calma e luce / Calm and light",
+      "Archivio visivo Suite Rosa / Visual archive"
+    ];
+
+    const suiteCaption = document.getElementById("suiteCaption");
+    let currentSuiteSlide = 0;
+
+    function showSuiteSlide(index) {
+      suiteSlides[currentSuiteSlide].classList.remove("active");
+      suiteDots[currentSuiteSlide].classList.remove("active");
+
+      currentSuiteSlide = (index + suiteSlides.length) % suiteSlides.length;
+
+      suiteSlides[currentSuiteSlide].classList.add("active");
+      suiteDots[currentSuiteSlide].classList.add("active");
+      suiteCaption.textContent = suiteCaptions[currentSuiteSlide] || "Suite Rosa";
+    }
+
+    function nextSuiteSlide() {
+      showSuiteSlide(currentSuiteSlide + 1);
+    }
+
+    function prevSuiteSlide() {
+      showSuiteSlide(currentSuiteSlide - 1);
+    }
 
     window.addEventListener('load', () => {
       const active = document.querySelector('.nav a.active') || focusable[0];
@@ -416,18 +652,26 @@
       const keys = ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '];
       if(!keys.includes(event.key)) return;
 
+      if(event.key === 'ArrowRight') {
+        nextSuiteSlide();
+      }
+
+      if(event.key === 'ArrowLeft') {
+        prevSuiteSlide();
+      }
+
       const current = focusable.indexOf(document.activeElement);
       if(current === -1){
         focusable[0].focus();
         return;
       }
 
-      if(event.key === 'ArrowDown' || event.key === 'ArrowRight'){
+      if(event.key === 'ArrowDown'){
         event.preventDefault();
         focusable[(current + 1) % focusable.length].focus();
       }
 
-      if(event.key === 'ArrowUp' || event.key === 'ArrowLeft'){
+      if(event.key === 'ArrowUp'){
         event.preventDefault();
         focusable[(current - 1 + focusable.length) % focusable.length].focus();
       }
@@ -437,6 +681,8 @@
         document.activeElement.click();
       }
     });
+
+    setInterval(nextSuiteSlide, 6500);
   </script>
 </body>
 </html>
