@@ -7,262 +7,297 @@
 
   <!--
     THALASSA SUITES — SUITE VIOLA
-    Versione con carosello da 18 immagini sotto il testo principale.
+    Versione coerente con Suite Blu e Suite Rosa:
+    - immagine rappresentativa di sfondo
+    - layout scrollabile
+    - carosello da 18 immagini sotto il testo principale
 
     File da caricare su GitHub:
     suite-viola.html
 
-    Immagini carosello richieste in /images:
+    Immagine di sfondo:
     images/suite-viola-01.jpg
-    ...
-    images/suite-viola-18.jpg
+
+    Immagini carosello richieste in /images:
+    images/suite-viola-01.jpg ... images/suite-viola-18.jpg
 
     QR predisposto:
     images/qr-suite-viola.png
-
-    Nota:
-    Ogni immagine è in object-fit: contain, quindi viene visualizzata intera senza tagli.
   -->
 
   <style>
-    :root {
+    :root{
       --ink:#020817;
       --navy:#06172d;
       --navy-2:#0b2746;
       --white:#f8fafc;
       --mist:rgba(248,250,252,.78);
       --soft:#b9c6d3;
-      --line:rgba(220,232,244,.17);
+      --muted:#8293a4;
+      --line:rgba(220,232,244,.16);
+      --panel:rgba(4,14,29,.58);
+      --panel-strong:rgba(4,14,29,.76);
       --accent:#d9e7f2;
-      --accent-2:#c8b8ff;
-      --focus:rgba(191,219,242,.82);
-      --gold:#d7c28a;
       --violet:#bba7ff;
+      --focus:rgba(187,167,255,.82);
     }
 
-    * { box-sizing:border-box; }
+    *{box-sizing:border-box;}
 
-    html {
+    html{
       scroll-behavior:smooth;
     }
 
-    body {
+    html,body{
       margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(144,118,255,.18), transparent 28%),
-        radial-gradient(circle at 82% 26%, rgba(92,155,210,.18), transparent 30%),
-        linear-gradient(135deg, #020817 0%, #07172d 48%, #020817 100%);
+      width:100%;
+      min-height:100%;
+      background:var(--ink);
       color:var(--white);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
       letter-spacing:-.02em;
       overflow-x:hidden;
     }
 
-    a {
-      color:inherit;
-      text-decoration:none;
-    }
+    a{color:inherit;text-decoration:none;}
 
-    body::after {
+    body::before{
       content:"";
       position:fixed;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(2,8,23,.80) 0%, rgba(2,8,23,.28) 46%, rgba(2,8,23,.68) 100%),
-        linear-gradient(180deg, rgba(2,8,23,.08) 0%, rgba(2,8,23,.46) 100%);
-      pointer-events:none;
+        radial-gradient(circle at 22% 18%, rgba(187,167,255,.25), transparent 30%),
+        radial-gradient(circle at 82% 22%, rgba(92,155,210,.18), transparent 30%),
+        linear-gradient(135deg, #020817 0%, #06172d 42%, #0b2746 70%, #020817 100%);
       z-index:0;
+      pointer-events:none;
     }
 
-    .page {
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(2,8,23,.50) 0%, rgba(2,8,23,.20) 48%, rgba(2,8,23,.60) 100%),
+        linear-gradient(180deg, rgba(2,8,23,.05), rgba(2,8,23,.42));
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .screen{
       position:relative;
+      min-height:100vh;
+      background:transparent;
+    }
+
+    .bg{
+      position:fixed;
+      inset:0;
+      background-image:url('images/suite-viola-01.jpg');
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.06) contrast(1.05) brightness(.96);
+      opacity:.88;
+      transform:scale(1.035);
       z-index:1;
+      pointer-events:none;
+    }
+
+    .ui{
+      position:relative;
+      z-index:3;
       min-height:100vh;
       display:grid;
-      grid-template-columns:270px 1fr;
+      grid-template-columns:280px 1fr;
     }
 
-    .sidebar {
+    .sidebar{
       position:sticky;
       top:0;
       height:100vh;
-      padding:28px 20px;
-      border-right:1px solid rgba(220,232,244,.16);
-      background:rgba(2,8,23,.42);
-      backdrop-filter:blur(22px);
-      display:flex;
-      flex-direction:column;
-      gap:26px;
+      padding:36px 22px;
+      background:rgba(2,8,23,.54);
+      border-right:1px solid var(--line);
+      backdrop-filter:blur(26px);
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:28px;
     }
 
-    .brandmark {
+    .brand{
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       gap:12px;
       text-transform:uppercase;
-      letter-spacing:.22em;
+      letter-spacing:.15em;
+      color:var(--mist);
       font-size:13px;
-      color:rgba(248,250,252,.82);
       line-height:1.35;
     }
 
-    .brand-dot {
+    .dot{
       width:9px;
       height:9px;
-      border-radius:999px;
-      margin-top:4px;
+      border-radius:99px;
       background:var(--violet);
-      box-shadow:0 0 34px rgba(187,167,255,.78);
+      box-shadow:0 0 32px rgba(187,167,255,.82);
       flex:0 0 auto;
     }
 
-    .side-nav {
+    .nav{
       display:grid;
+      align-content:start;
       gap:10px;
-      margin-top:12px;
+      margin-top:10px;
     }
 
-    .side-link {
-      min-height:50px;
+    .nav a{
       display:flex;
       align-items:center;
+      justify-content:space-between;
+      min-height:52px;
       padding:13px 14px;
-      border-radius:17px;
-      border:1px solid rgba(220,232,244,.10);
+      border-radius:18px;
+      border:1px solid rgba(220,232,244,.08);
+      color:var(--soft);
       background:rgba(255,255,255,.035);
-      color:rgba(248,250,252,.72);
-      font-size:14px;
-      transition:all .22s ease;
-    }
-
-    .side-link.active,
-    .side-link:hover,
-    .side-link:focus {
       outline:none;
-      color:var(--white);
-      border-color:rgba(191,219,242,.62);
-      background:rgba(168,199,223,.12);
-      box-shadow:0 0 0 3px rgba(168,199,223,.10);
+      transition:.18s ease;
+      font-size:15px;
     }
 
-    .remote {
-      margin-top:auto;
-      color:rgba(248,250,252,.55);
+    .nav a.active{
+      color:var(--white);
+      border-color:rgba(187,167,255,.42);
+      background:linear-gradient(180deg, rgba(187,167,255,.18), rgba(255,255,255,.05));
+    }
+
+    .nav a:hover,
+    .nav a:focus,
+    .nav a:focus-visible{
+      color:var(--white);
+      border-color:var(--focus);
+      background:linear-gradient(180deg, rgba(187,167,255,.16), rgba(255,255,255,.06));
+      box-shadow:0 0 0 3px rgba(187,167,255,.14);
+      transform:translateX(3px);
+    }
+
+    .remote{
+      color:var(--muted);
       font-size:12px;
       line-height:1.45;
     }
 
-    .main {
+    .content{
       min-height:100vh;
-      padding:28px 38px 42px 56px;
+      padding:42px 58px 34px;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
     }
 
-    .topbar {
+    .topline{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:24px;
+      color:var(--mist);
+      font-size:14px;
       text-transform:uppercase;
-      color:rgba(248,250,252,.70);
-      letter-spacing:.28em;
-      font-size:13px;
-      margin-bottom:90px;
+      letter-spacing:.17em;
     }
 
-    .layout {
+    .main{
+      flex:1;
       display:grid;
-      grid-template-columns:minmax(0,1.4fr) 408px;
-      gap:64px;
+      grid-template-columns:minmax(0,1fr) 420px;
       align-items:start;
-    }
-
-    .hero-copy {
-      max-width:900px;
+      gap:50px;
       padding-top:64px;
     }
 
-    .eyebrow {
+    .copy{
+      max-width:920px;
+    }
+
+    .eyebrow{
       color:var(--violet);
+      font-size:14px;
+      letter-spacing:.30em;
       text-transform:uppercase;
-      letter-spacing:.34em;
-      font-size:13px;
-      margin-bottom:26px;
+      margin-bottom:18px;
     }
 
-    h1 {
+    h1{
       margin:0;
-      max-width:860px;
-      font-size:clamp(58px, 6vw, 86px);
-      line-height:.95;
-      font-weight:640;
+      font-size:clamp(58px, 6.2vw, 86px);
+      line-height:.92;
+      font-weight:520;
       letter-spacing:-.075em;
-      text-shadow:0 24px 80px rgba(0,0,0,.42);
+      text-shadow:0 26px 70px rgba(0,0,0,.48);
+      max-width:860px;
     }
 
-    .lead {
-      margin:28px 0 0;
-      max-width:820px;
-      color:rgba(248,250,252,.78);
-      font-size:22px;
-      line-height:1.44;
+    .intro{
+      margin-top:24px;
+      max-width:760px;
+      color:rgba(248,250,252,.82);
+      font-size:23px;
+      line-height:1.42;
       font-weight:300;
     }
 
-    .lead.en {
-      margin-top:24px;
-      color:rgba(248,250,252,.62);
+    .intro.en{
+      margin-top:14px;
+      color:var(--soft);
       font-size:18px;
-      line-height:1.5;
     }
 
-    .quote {
+    .quote{
       margin-top:28px;
-      max-width:800px;
-      padding-left:22px;
-      border-left:1px solid rgba(187,167,255,.42);
-      color:rgba(248,250,252,.62);
-      font-size:17px;
+      max-width:760px;
+      padding-left:24px;
+      border-left:1px solid rgba(187,167,255,.52);
+      color:rgba(248,250,252,.74);
+      font-size:18px;
       line-height:1.55;
+      font-weight:300;
     }
 
-    .details {
-      margin-top:64px;
-      border-radius:30px;
-      border:1px solid rgba(220,232,244,.16);
-      background:rgba(8,25,48,.58);
-      backdrop-filter:blur(24px);
-      box-shadow:0 34px 100px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.07);
+    .panel{
+      position:sticky;
+      top:42px;
+      background:linear-gradient(180deg, rgba(8,25,48,.68), rgba(3,12,26,.58));
+      border:1px solid var(--line);
+      border-radius:34px;
       padding:24px;
+      backdrop-filter:blur(28px);
+      box-shadow:0 34px 100px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
     }
 
-    .details h2 {
-      margin:0 0 18px;
-      font-size:22px;
-      letter-spacing:-.04em;
-      font-weight:520;
+    .panel h2{
+      margin:0 0 16px;
+      font-size:23px;
+      font-weight:480;
+      letter-spacing:-.045em;
     }
 
-    .essentials {
+    .grid{display:grid;gap:10px;}
+
+    .info{
       display:grid;
-      gap:10px;
-    }
-
-    .essential {
-      display:grid;
-      grid-template-columns:44px 1fr;
-      gap:14px;
+      grid-template-columns:42px 1fr;
+      gap:13px;
       align-items:center;
-      padding:12px 14px;
       min-height:66px;
-      border-radius:18px;
-      background:rgba(255,255,255,.045);
+      padding:13px;
+      border-radius:20px;
       border:1px solid rgba(220,232,244,.10);
+      background:rgba(255,255,255,.045);
     }
 
-    .essential-icon {
-      width:44px;
-      height:44px;
+    .ico{
+      width:42px;
+      height:42px;
       border-radius:15px;
       display:flex;
       align-items:center;
@@ -272,68 +307,43 @@
       font-size:18px;
     }
 
-    .essential strong {
-      display:block;
-      font-size:15px;
-      margin-bottom:4px;
-    }
+    .info strong{display:block;font-size:16px;font-weight:520;}
 
-    .essential span {
-      display:block;
-      color:rgba(248,250,252,.60);
-      font-size:12px;
-      line-height:1.35;
-    }
+    .info span{display:block;margin-top:2px;font-size:12px;color:var(--soft);line-height:1.35;}
 
-    .qr-card {
-      margin-top:20px;
-      padding:16px;
-      border-radius:22px;
-      background:rgba(2,8,23,.42);
-      border:1px solid rgba(220,232,244,.14);
+    .cta{
+      margin-top:16px;
       display:grid;
-      grid-template-columns:116px 1fr;
+      grid-template-columns:120px 1fr;
       gap:16px;
       align-items:center;
+      padding:16px;
+      border-radius:24px;
+      background:var(--panel-strong);
+      border:1px solid rgba(187,167,255,.24);
     }
 
-    .qr {
-      width:116px;
-      height:116px;
-      border-radius:16px;
+    .qr{
+      width:120px;
+      height:120px;
+      border-radius:20px;
       padding:10px;
       background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      box-shadow:0 18px 45px rgba(0,0,0,.28);
     }
 
-    .qr img {
-      width:100%;
-      height:100%;
-      object-fit:contain;
-    }
+    .qr img{width:100%;height:100%;object-fit:contain;}
 
-    .qr-copy h3 {
-      margin:0 0 8px;
-      font-size:20px;
-      letter-spacing:-.04em;
-      line-height:1.2;
-    }
+    .cta h3{margin:0 0 6px;font-size:20px;font-weight:470;letter-spacing:-.04em;}
 
-    .qr-copy p {
-      margin:0;
-      color:rgba(248,250,252,.62);
-      font-size:13px;
-      line-height:1.45;
-    }
+    .cta p{margin:0;color:var(--soft);font-size:14px;line-height:1.42;}
 
-    .carousel-section {
+    .carousel-section{
       margin-top:54px;
       max-width:960px;
     }
 
-    .carousel-head {
+    .carousel-head{
       display:flex;
       justify-content:space-between;
       gap:18px;
@@ -341,7 +351,7 @@
       margin-bottom:18px;
     }
 
-    .carousel-head h2 {
+    .carousel-head h2{
       margin:0;
       font-size:32px;
       line-height:1.1;
@@ -349,7 +359,7 @@
       letter-spacing:-.05em;
     }
 
-    .carousel-head span {
+    .carousel-head span{
       color:var(--violet);
       text-transform:uppercase;
       letter-spacing:.22em;
@@ -357,7 +367,7 @@
       white-space:nowrap;
     }
 
-    .suite-carousel {
+    .suite-carousel{
       position:relative;
       min-height:500px;
       border-radius:30px;
@@ -365,11 +375,11 @@
       border:1px solid rgba(220,232,244,.16);
       background:
         radial-gradient(circle at center, rgba(255,255,255,.055), transparent 55%),
-        rgba(2,8,23,.62);
+        rgba(2,8,23,.68);
       box-shadow:0 32px 90px rgba(0,0,0,.36);
     }
 
-    .suite-slide {
+    .suite-slide{
       display:none;
       min-height:500px;
       align-items:center;
@@ -377,11 +387,11 @@
       padding:22px;
     }
 
-    .suite-slide.active {
+    .suite-slide.active{
       display:flex;
     }
 
-    .suite-slide img {
+    .suite-slide img{
       max-width:100%;
       max-height:456px;
       width:auto;
@@ -392,7 +402,7 @@
       background:rgba(255,255,255,.035);
     }
 
-    .suite-arrow {
+    .suite-arrow{
       position:absolute;
       top:50%;
       transform:translateY(-50%);
@@ -410,16 +420,16 @@
     }
 
     .suite-arrow:hover,
-    .suite-arrow:focus {
+    .suite-arrow:focus{
       outline:none;
       background:rgba(187,167,255,.22);
       border-color:rgba(187,167,255,.70);
     }
 
-    .suite-arrow.left { left:18px; }
-    .suite-arrow.right { right:18px; }
+    .suite-arrow.left{left:18px;}
+    .suite-arrow.right{right:18px;}
 
-    .suite-caption {
+    .suite-caption{
       padding:16px 8px 0;
       text-align:center;
       color:rgba(248,250,252,.68);
@@ -427,7 +437,7 @@
       line-height:1.45;
     }
 
-    .suite-dots {
+    .suite-dots{
       display:flex;
       justify-content:center;
       flex-wrap:wrap;
@@ -435,7 +445,7 @@
       margin-top:14px;
     }
 
-    .suite-dot {
+    .suite-dot{
       width:10px;
       height:10px;
       border-radius:999px;
@@ -445,110 +455,98 @@
       padding:0;
     }
 
-    .suite-dot.active {
+    .suite-dot.active{
       background:var(--violet);
       border-color:var(--violet);
     }
 
-    .bottom {
-      margin-top:70px;
+    .bottom{
+      margin-top:46px;
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      gap:28px;
-      color:rgba(248,250,252,.58);
-      font-size:13px;
+      justify-content:space-between;
+      gap:26px;
+      color:rgba(248,250,252,.68);
+      font-size:14px;
     }
 
-    @media (max-width:1200px) {
-      .page {
-        grid-template-columns:1fr;
-      }
+    .line{
+      width:42px;
+      height:1px;
+      background:rgba(187,167,255,.76);
+      display:inline-block;
+      margin-right:12px;
+      vertical-align:middle;
+    }
 
-      .sidebar {
+    @media(max-width:1200px){
+      .ui{display:block;}
+
+      .sidebar{
         position:relative;
         height:auto;
-        padding:18px 22px;
+        padding:24px 18px;
+        display:block;
         border-right:0;
-        border-bottom:1px solid rgba(220,232,244,.16);
+        border-bottom:1px solid var(--line);
       }
 
-      .side-nav {
-        grid-template-columns:repeat(4, minmax(0,1fr));
+      .nav{
+        grid-template-columns:repeat(3, minmax(0,1fr));
       }
 
-      .remote {
-        display:none;
+      .remote{display:none;}
+
+      .content{
+        min-height:auto;
+        padding:34px 24px 40px;
       }
 
-      .main {
-        padding:30px 24px 40px;
-      }
-
-      .topbar {
-        margin-bottom:36px;
-      }
-
-      .layout {
+      .main{
         grid-template-columns:1fr;
+        padding-top:28px;
       }
 
-      .hero-copy {
-        padding-top:10px;
+      .panel{
+        position:relative;
+        top:auto;
       }
 
-      .details {
-        margin-top:0;
-      }
-
-      .carousel-section {
-        max-width:100%;
-      }
+      .carousel-section{max-width:100%;}
     }
 
-    @media (max-width:760px) {
-      .side-nav {
-        grid-template-columns:1fr 1fr;
-      }
+    @media(max-width:760px){
+      .nav{grid-template-columns:1fr 1fr;}
 
-      .topbar {
+      .topline{
         align-items:flex-start;
         flex-direction:column;
-        font-size:11px;
+        font-size:12px;
       }
 
-      h1 {
-        font-size:48px;
-      }
+      h1{font-size:54px;}
 
-      .lead {
-        font-size:19px;
-      }
+      .intro{font-size:18px;}
 
-      .layout {
-        gap:36px;
-      }
-
-      .qr-card {
+      .cta{
         grid-template-columns:1fr;
+        text-align:center;
       }
+
+      .qr{margin:0 auto;}
 
       .suite-carousel,
-      .suite-slide {
-        min-height:360px;
-      }
+      .suite-slide{min-height:360px;}
 
-      .suite-slide img {
-        max-height:318px;
-      }
+      .suite-slide img{max-height:318px;}
 
-      .suite-arrow {
+      .suite-arrow{
         width:48px;
         height:48px;
         font-size:30px;
       }
 
-      .bottom {
+      .bottom{
         display:block;
         line-height:1.7;
       }
@@ -557,69 +555,65 @@
 </head>
 
 <body>
+  <main class="screen">
+    <div class="bg"></div>
 
-  <div class="page">
-    <aside class="sidebar">
-      <div class="brandmark">
-        <span class="brand-dot"></span>
-        <span>Thalassa Suites<br>TV</span>
-      </div>
+    <section class="ui">
+      <aside class="sidebar">
+        <div class="brand"><span class="dot"></span><span>Thalassa Suites<br>TV</span></div>
 
-      <nav class="side-nav" aria-label="Navigazione Suite">
-        <a class="side-link" href="home.html">Home</a>
-        <a class="side-link active" href="suite-viola.html">Suite Viola</a>
-        <a class="side-link" href="suite-blu.html">Suite Blu</a>
-        <a class="side-link" href="suite-rosa.html">Suite Rosa</a>
-        <a class="side-link" href="mobile.html">Wi‑Fi</a>
-        <a class="side-link" href="check-out.html">Check-out</a>
-        <a class="side-link" href="mobile.html">House Rules</a>
-        <a class="side-link" href="services.html">Services</a>
-        <a class="side-link" href="mobile.html">Guest Guide</a>
-      </nav>
+        <nav class="nav" aria-label="Navigazione TV Thalassa Suites">
+          <a href="home.html">Home</a>
+          <a href="suite-viola.html" class="active">Suite Viola</a>
+          <a href="suite-blu.html">Suite Blu</a>
+          <a href="suite-rosa.html">Suite Rosa</a>
+          <a href="mobile.html#wifi">Wi‑Fi</a>
+          <a href="check-out.html">Check‑out</a>
+          <a href="mobile.html#rules">House Rules</a>
+          <a href="services.html">Services</a>
+          <a href="mobile.html">Guest Guide</a>
+        </nav>
 
-      <div class="remote">
-        Telecomando: frecce + OK<br>
-        Remote: arrows + OK
-      </div>
-    </aside>
+        <div class="remote">Telecomando: frecce + OK<br>Remote: arrows + OK</div>
+      </aside>
 
-    <main class="main">
-      <header class="topbar">
-        <div>Room Experience</div>
-        <div>Italiano · English</div>
-      </header>
+      <section class="content">
+        <header class="topline">
+          <div>Room Experience</div>
+          <div>Italiano · English</div>
+        </header>
 
-      <section class="layout">
-        <div class="hero-copy">
-          <div class="eyebrow">Suite Viola</div>
-          <h1>La stanza che riflette il Mediterraneo.</h1>
+        <section class="main">
+          <article class="copy">
+            <div class="eyebrow">Suite Viola</div>
+            <h1>La stanza che riflette il Mediterraneo.</h1>
 
-          <p class="lead">
-            La Suite Viola è un luogo sospeso tra il visibile e l’immaginato,
-            tra arte e luce, tra il mare e la memoria.
-          </p>
+            <p class="intro">
+              La Suite Viola è un luogo sospeso tra il visibile e l’immaginato,
+              tra arte e luce, tra il mare e la memoria.
+            </p>
 
-          <p class="lead en">
-            Suite Viola is a space suspended between the visible and the imagined,
-            between art and light, sea and memory.
-          </p>
+            <p class="intro en">
+              Suite Viola is a space suspended between the visible and the imagined,
+              between art and light, sea and memory.
+            </p>
 
-          <div class="quote">
-            Qui, il viola non è solo colore. È sensazione che vibra, tempo che si allunga,
-            mare che si riflette nell’anima.
-          </div>
-
-          <section class="carousel-section" aria-label="Carosello immagini Suite Viola">
-            <div class="carousel-head">
-              <div>
-                <div class="eyebrow">Visual gallery</div>
-                <h2>Immagini della Suite</h2>
-              </div>
-              <span>18 immagini</span>
+            <div class="quote">
+              Qui, il viola non è solo colore. È sensazione che vibra, tempo che si allunga,
+              mare che si riflette nell’anima.
             </div>
 
-            <div class="suite-carousel">
-              <button class="suite-arrow left" onclick="prevSuiteSlide()" aria-label="Immagine precedente">‹</button>
+            <section class="carousel-section" aria-label="Carosello immagini Suite Viola">
+              <div class="carousel-head">
+                <div>
+                  <div class="eyebrow">Visual gallery</div>
+                  <h2>Immagini della Suite</h2>
+                </div>
+                <span>18 immagini</span>
+              </div>
+
+              <div class="suite-carousel">
+                <button class="suite-arrow left" onclick="prevSuiteSlide()" aria-label="Immagine precedente">‹</button>
 
             <div class="suite-slide active">
               <img src="images/suite-viola-01.jpg" alt="Suite Viola immagine 1" />
@@ -676,14 +670,14 @@
               <img src="images/suite-viola-18.jpg" alt="Suite Viola immagine 18" />
             </div>
 
-              <button class="suite-arrow right" onclick="nextSuiteSlide()" aria-label="Immagine successiva">›</button>
-            </div>
+                <button class="suite-arrow right" onclick="nextSuiteSlide()" aria-label="Immagine successiva">›</button>
+              </div>
 
-            <div class="suite-caption" id="suiteCaption">
-              Suite Viola · Atmosfere e dettagli
-            </div>
+              <div class="suite-caption" id="suiteCaption">
+                Suite Viola · Atmosfere e dettagli
+              </div>
 
-            <div class="suite-dots" aria-label="Indicatori carosello Suite Viola">
+              <div class="suite-dots" aria-label="Indicatori carosello Suite Viola">
             <button class="suite-dot active" onclick="showSuiteSlide(0)" aria-label="Vai all'immagine 1"></button>
             <button class="suite-dot" onclick="showSuiteSlide(1)" aria-label="Vai all'immagine 2"></button>
             <button class="suite-dot" onclick="showSuiteSlide(2)" aria-label="Vai all'immagine 3"></button>
@@ -702,69 +696,39 @@
             <button class="suite-dot" onclick="showSuiteSlide(15)" aria-label="Vai all'immagine 16"></button>
             <button class="suite-dot" onclick="showSuiteSlide(16)" aria-label="Vai all'immagine 17"></button>
             <button class="suite-dot" onclick="showSuiteSlide(17)" aria-label="Vai all'immagine 18"></button>
+              </div>
+            </section>
+          </article>
+
+          <aside class="panel">
+            <h2>Room essentials · Dettagli camera</h2>
+            <div class="grid">
+              <div class="info"><div class="ico">⌁</div><div><strong>Atmosfera artistica</strong><span>Art-inspired Mediterranean atmosphere</span></div></div>
+              <div class="info"><div class="ico">≈</div><div><strong>Ispirazione mare</strong><span>Inspired by shifting Mediterranean reflections</span></div></div>
+              <div class="info"><div class="ico">◷</div><div><strong>Check‑out 10:00</strong><span>Departure by 10:00 AM</span></div></div>
+              <div class="info"><div class="ico">☎</div><div><strong>Assistenza ospiti</strong><span>Guest support via mobile guide</span></div></div>
             </div>
-          </section>
-        </div>
 
-        <aside class="details">
-          <h2>Room essentials · Dettagli camera</h2>
-
-          <div class="essentials">
-            <div class="essential">
-              <div class="essential-icon">⌁</div>
+            <div class="cta">
+              <div class="qr"><img src="images/qr-suite-viola.png" alt="QR Suite Viola" /></div>
               <div>
-                <strong>Atmosfera artistica</strong>
-                <span>Art-inspired Mediterranean atmosphere</span>
+                <h3>Apri sul telefono · Open on mobile</h3>
+                <p>Scansiona per dettagli, link utili e informazioni complete sulla Suite Viola.</p>
               </div>
             </div>
+          </aside>
+        </section>
 
-            <div class="essential">
-              <div class="essential-icon">≈</div>
-              <div>
-                <strong>Ispirazione mare</strong>
-                <span>Inspired by shifting Mediterranean reflections</span>
-              </div>
-            </div>
-
-            <div class="essential">
-              <div class="essential-icon">◷</div>
-              <div>
-                <strong>Check‑out 10:00</strong>
-                <span>Departure by 10:00 AM</span>
-              </div>
-            </div>
-
-            <div class="essential">
-              <div class="essential-icon">☎</div>
-              <div>
-                <strong>Assistenza ospiti</strong>
-                <span>Guest support via mobile guide</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="qr-card">
-            <div class="qr">
-              <img src="images/qr-suite-viola.png" alt="QR Suite Viola">
-            </div>
-            <div class="qr-copy">
-              <h3>Apri sul telefono · Open on mobile</h3>
-              <p>
-                Scansiona per dettagli, link utili e informazioni complete sulla Suite Viola.
-              </p>
-            </div>
-          </div>
-        </aside>
+        <footer class="bottom">
+          <div><span class="line"></span>Thalassa Suites · Suite Viola</div>
+          <div>https://www.thalassasuites.it/camere/suite-viola/</div>
+        </footer>
       </section>
-
-      <footer class="bottom">
-        <div>Thalassa Suites · Suite Viola</div>
-        <div>https://www.thalassasuites.it/camere/suite-viola/</div>
-      </footer>
-    </main>
-  </div>
+    </section>
+  </main>
 
   <script>
+    const focusable = Array.from(document.querySelectorAll('a, button'));
     const suiteSlides = document.querySelectorAll(".suite-slide");
     const suiteDots = document.querySelectorAll(".suite-dot");
     const suiteCaptions = [
@@ -810,14 +774,46 @@
       showSuiteSlide(currentSuiteSlide - 1);
     }
 
-    document.addEventListener("keydown", function(event) {
-      if (event.key === "ArrowRight") nextSuiteSlide();
-      if (event.key === "ArrowLeft") prevSuiteSlide();
-      if (event.key === "Escape") window.location.href = "home.html";
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.nav a.active') || focusable[0];
+      setTimeout(() => active.focus(), 500);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      const keys = ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '];
+      if(!keys.includes(event.key)) return;
+
+      if(event.key === 'ArrowRight') {
+        nextSuiteSlide();
+      }
+
+      if(event.key === 'ArrowLeft') {
+        prevSuiteSlide();
+      }
+
+      const current = focusable.indexOf(document.activeElement);
+      if(current === -1){
+        focusable[0].focus();
+        return;
+      }
+
+      if(event.key === 'ArrowDown'){
+        event.preventDefault();
+        focusable[(current + 1) % focusable.length].focus();
+      }
+
+      if(event.key === 'ArrowUp'){
+        event.preventDefault();
+        focusable[(current - 1 + focusable.length) % focusable.length].focus();
+      }
+
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        document.activeElement.click();
+      }
     });
 
     setInterval(nextSuiteSlide, 6500);
   </script>
-
 </body>
 </html>
